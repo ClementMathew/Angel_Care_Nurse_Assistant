@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nurse_assistant/WelcomePage.dart';
+import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/Welcome Screens/WelcomePage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -25,19 +26,19 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(229, 228, 229, 1),
+        backgroundColor: background,
         body: Center(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 224, 0, 0),
+                padding: const EdgeInsets.fromLTRB(10, 204, 0, 0),
                 child: Image.asset("assets/images/Splash.png"),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(156, 128, 157, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(156, 128, 157, 0),
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    Color.fromRGBO(82, 164, 80, 1),
+                    theme,
                   ),
                 ),
               )
