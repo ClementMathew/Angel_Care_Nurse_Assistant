@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurse_assistant/Nurse/HomePage.dart';
 
 import 'Welcome Screens/SplashScreen.dart';
 
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Nurse App',
-      home: SplashScreen(),
+      home: //SplashScreen(),
+      NurseHome()
     );
   }
 }

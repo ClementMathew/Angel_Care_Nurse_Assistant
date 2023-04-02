@@ -10,6 +10,9 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  var size,height,width;
+
   @override
   void initState() {
     super.initState();
@@ -24,21 +27,33 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: background,
         body: Center(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 204, 0, 0),
-                child: Image.asset("assets/images/Splash.png"),
+              SizedBox(
+                height: height * .20,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(156, 128, 157, 0),
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    theme,
+              Container(
+                  height: height * .35,
+                  child: Image.asset("assets/images/Splash.png")),
+              SizedBox(height: height*.2,),
+              Center(
+                child: Container(
+                  color: Colors.transparent,
+                  height: height*.045,
+                  width: height*.045,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      theme,
+                    ),
                   ),
                 ),
               )

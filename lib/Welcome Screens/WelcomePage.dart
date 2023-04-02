@@ -1,31 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/Welcome Screens/LoginPage.dart';
+import 'package:nurse_assistant/Welcome%20Screens/RegisterPage.dart';
 
-class WelcomePage extends StatelessWidget {
+import 'OTPPage.dart';
+
+class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
   @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  var size, height, width;
+
+  @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: background,
-        body: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 161, 0, 0),
-                child: Image.asset('assets/images/Splash.png'),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 89, 0, 0),
-                child: ElevatedButton(
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: height * .17,
+                ),
+                SizedBox(
+                    height: height * .35,
+                    child: Image.asset("assets/images/Splash.png")),
+                SizedBox(
+                  height: height * .1,
+                ),
+                ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: theme,
-                      fixedSize: const Size(240, 50),
+                      fixedSize: Size(width * .74, height * .065),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30))),
                   child: const Text('Login',
@@ -34,17 +55,21 @@ class WelcomePage extends StatelessWidget {
                           letterSpacing: 0.5,
                           fontSize: 18)),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 37, 0, 0),
-                child: OutlinedButton(
-                  onPressed: () {},
+                SizedBox(
+                  height: height * .045,
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterPage()));
+                  },
                   style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                          width: 2.0, color: theme),
+                      side: BorderSide(width: 2.0, color: theme),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      fixedSize: const Size(240, 50)),
+                      fixedSize: Size(width * .74, height * .065)),
                   child: Text('Sign up',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -53,24 +78,24 @@ class WelcomePage extends StatelessWidget {
                         color: theme,
                       )),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 45, 0, 0),
-                child: TextButton(
+                SizedBox(
+                  height: height * .05,
+                ),
+                TextButton(
                   onPressed: () {
-                    //forgot password screen
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const OTPPage()));
                   },
                   style: TextButton.styleFrom(fixedSize: const Size(188, 13)),
                   child: Text('Forgot Password ?',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                        fontSize: 16,
                         letterSpacing: .2,
                         color: theme,
                       )),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
