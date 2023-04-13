@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/Nurse/HomePage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -102,7 +103,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: height * .07,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const NurseHome(),));
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: theme,
                       fixedSize: Size(width * .70, height * .065),
