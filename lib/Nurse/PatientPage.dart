@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 
-import 'medications.dart';
+import 'MediactionsPage.dart';
 import 'SymptomsPage.dart';
 
 class PatientPage extends StatefulWidget {
