@@ -1,4 +1,6 @@
 import 'dart:ui';
 
-Color background = const Color.fromRGBO(229, 228, 229, 1);
+import 'package:flutter/material.dart';
+
+Color background = Colors.white;
 Color theme = const Color.fromRGBO(82, 164, 80, 1);

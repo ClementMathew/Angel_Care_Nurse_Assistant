@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 
+import '../Resusables/buttons.dart';
+import '../Resusables/textFields.dart';
+import 'WelcomePage.dart';
+
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
 
@@ -9,12 +13,12 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
-  var size, height, width;
+
+  TextEditingController rePasswordTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
 
     return SafeArea(
         child: Scaffold(
@@ -22,20 +26,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             body: SingleChildScrollView(
               child: Center(
                   child: Column(children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          iconSize: 30,
-                          icon: const Icon(Icons.arrow_back),
-                          color: theme,
-                        ),
-                      ),
-                    ),
+                    backButton(context),
                     SizedBox(
                       height: height * .07,
                     ),
@@ -45,75 +36,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     SizedBox(
                       height: height * .05,
                     ),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Password',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    textField(true, false, null, "New Password",
+                        passwordTextController),
                     SizedBox(height: height * .05),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        keyboardType: TextInputType.visiblePassword,
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Retype Password',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    textField(true, false, null, "Retype password",
+                        rePasswordTextController),
                     SizedBox(
                       height: height * .07,
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: theme,
-                          fixedSize: Size(width * .70, height * .065),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30))),
-                      child: const Text('Change Password',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              letterSpacing: .5)),
-                    ),
+                    filledButton(context, "Change Password", false, null, (){}),
                     SizedBox(
                       height: height*.06,
                     )

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../Colors/Colors.dart';
+import '../Resusables/buttons.dart';
 import 'ForgotPassword.dart';
+import 'WelcomePage.dart';
 
 class OTPPage extends StatefulWidget {
   const OTPPage({super.key});
@@ -11,13 +13,15 @@ class OTPPage extends StatefulWidget {
 }
 
 class _OTPPageState extends State<OTPPage> {
-  var size, height, width;
+
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
+
+  bool otpVisibility = false;
+  String verificationID = "";
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
 
     return SafeArea(
       child: Scaffold(
@@ -25,20 +29,7 @@ class _OTPPageState extends State<OTPPage> {
           body: SingleChildScrollView(
             child: Center(
                 child: Column(children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        iconSize: 30,
-                        icon: const Icon(Icons.arrow_back),
-                        color: theme,
-                      ),
-                    ),
-                  ),
+                  backButton(context),
                   SizedBox(
                     height: height * .07,
                   ),
@@ -46,67 +37,65 @@ class _OTPPageState extends State<OTPPage> {
                       height: height * .35,
                       child: Image.asset("assets/images/Splash.png")),
                   SizedBox(
-                    height: height * .05,
+                    height: height * .03,
                   ),
-                  SizedBox(
-                    width: width * .8,
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(width * .1, 20, width * .1, 0),
                     child: TextField(
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 13),
+                      keyboardType: TextInputType.phone,
+                      controller: phoneController,
+                      style: const TextStyle(fontSize: 15),
                       decoration: InputDecoration(
                           floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintText: "Enter the Number (with +91)",
+                          hintStyle:
+                          const TextStyle(color: Colors.black, fontSize: 15),
+                          labelText: "Phone Number",
                           labelStyle: TextStyle(
-                              fontSize: 17, color: theme, letterSpacing: .2),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: theme, width: 2)),
+                              fontSize: 16, color: theme, letterSpacing: .2),
                           focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(color: theme, width: 2)),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: theme, width: 2)),
-                          disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: theme, width: 2)),
-                          hintText: 'Enter OTP',
-                          hintStyle: const TextStyle(color: Colors.black)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: theme, width: 2))),
+                    ),
+                  ),
+                  Visibility(
+                    visible: otpVisibility,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(width * .1, 20, width * .1, 0),
+                      child: TextField(
+                        controller: otpController,
+                        style: const TextStyle(fontSize: 15),
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            hintText: "Enter the OTP",
+                            labelText: "One Time Password",
+                            hintStyle: const TextStyle(
+                                color: Colors.black, fontSize: 15),
+                            labelStyle: TextStyle(
+                                fontSize: 16, color: theme, letterSpacing: .2),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: BorderSide(color: theme, width: 2)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: BorderSide(color: theme, width: 2))),
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: height * .07,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: theme,
-                        fixedSize: Size(width * .70, height * .065),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30))),
-                    child: const Text('Send OTP',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            letterSpacing: .5)),
-                  ),
-                  SizedBox(
-                    height: height * .04,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
+                  filledButton(
+                    context,
+                    otpVisibility ? "Confirm" : "Send OTP",
+                    false,
+                    null, (){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPassword(),));
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: theme,
-                        fixedSize: Size(width * .70, height * .065),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30))),
-                    child: const Text('Confirm',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            letterSpacing: .5)),
-                  ),
+                  }),
                   SizedBox(
                     height: height*.06,
                   )

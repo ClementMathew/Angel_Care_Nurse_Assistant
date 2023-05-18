@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../Colors/Colors.dart';
+import '../Resusables/buttons.dart';
+import '../Resusables/dropDown.dart';
+import '../Resusables/textFields.dart';
+import 'WelcomePage.dart';
+
+String selectedGroup = "Blood Group";
+String selectedDept = "Working as";
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -11,13 +18,40 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-  var size,height,width;
+  List<String> groups = [
+    'A Positive',
+    'A Negative',
+    'B Positive',
+    'B Negative',
+    'O Positive',
+    'O Negative',
+    'AB Positive',
+    'AB Negative',
+  ];
+
+  List<String> departments = [
+    'Nurse',
+    'Nurse Superintendent',
+    'Doctor',
+    'Admission OP',
+  ];
+
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController phoneTextController = TextEditingController();
+  TextEditingController emailTextController = TextEditingController();
+  TextEditingController idTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+  TextEditingController rePasswordTextController = TextEditingController();
+
+  @override
+  void initState() {
+    selectedGroup = "Blood Group";
+    selectedDept = "Working as";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
 
     return SafeArea(
         child: Scaffold(
@@ -25,20 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
             body: SingleChildScrollView(
               child: Center(
                   child: Column(children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          iconSize: 30,
-                          icon: const Icon(Icons.arrow_back),
-                          color: theme,
-                        ),
-                      ),
-                    ),
+                    backButton(context),
                     SizedBox(
                       height: height * .07,
                     ),
@@ -48,226 +69,26 @@ class _RegisterPageState extends State<RegisterPage> {
                     SizedBox(
                       height: height * .05,
                     ),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Name',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    textField(false,false, null, "Name", nameTextController),
                     SizedBox(height: height * .05),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        keyboardType: TextInputType.phone,
-                        maxLength: 10,
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Phone Number',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    textField(false, true,null, "Phone Number", phoneTextController),
                     SizedBox(height: height * .025),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Email',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    textField(false,false, null, "Email", emailTextController),
                     SizedBox(height: height * .05),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Department',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    MyDropDown(myList: departments,isEdit: false),
                     SizedBox(height: height * .05),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Blood Group',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    MyDropDown(myList: groups,isEdit: false),
                     SizedBox(height: height * .05),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Staff Id Number',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    textField(false,false, null, "Staff Id Number", idTextController),
                     SizedBox(height: height * .05),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        keyboardType: TextInputType.visiblePassword,
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Password',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    textField(true, false,null, "New Password", passwordTextController),
                     SizedBox(height: height * .05),
-                    SizedBox(
-                      width: width * .8,
-                      child: TextField(
-                        keyboardType: TextInputType.visiblePassword,
-                        style: const TextStyle(fontSize: 13),
-                        decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                fontSize: 17, color: theme, letterSpacing: .2),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(color: theme, width: 2)),
-                            hintText: 'Retype Password',
-                            hintStyle: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
+                    textField(
+                        true,false,  null, "Retype Password", rePasswordTextController),
                     SizedBox(
                       height: height * .07,
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: theme,
-                          fixedSize: Size(width * .70, height * .065),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30))),
-                      child: const Text('Register',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              letterSpacing: .5)),
-                    ),
+                    filledButton(context, "Register", false, null, (){}),
                     SizedBox(
                       height: height*.06,
                     )

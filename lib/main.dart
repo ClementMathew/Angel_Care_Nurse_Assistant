@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nurse_assistant/Nurse/HomePage.dart';
-import 'package:nurse_assistant/Nurse/PatientPage.dart';
-
-import 'SplashScreen.dart';
+import 'package:provider/provider.dart';
+import 'Provider/provider.dart';
+import 'Welcome Screens/WelcomePage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +12,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Nurse App',
-      home: SplashScreen()
-    );
+    return ChangeNotifierProvider(
+        create: (context) => TagProvider(),
+    child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Nurse App',
+        home: WelcomePage()));
   }
 }
