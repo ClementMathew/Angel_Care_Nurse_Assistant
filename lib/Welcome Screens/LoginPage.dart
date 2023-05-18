@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/Nurse/HomePage.dart';
 
 import '../Resusables/buttons.dart';
 import '../Resusables/textFields.dart';
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: height * .07,
                 ),
-                filledButton(context, "Login", false, null, () {}),
+                filledButton(context, "Login", false, null, () {Navigator.push(context, MaterialPageRoute(builder: (context) => const NurseHome(),));}),
                 SizedBox(
                   height: height * .06,
                 )
