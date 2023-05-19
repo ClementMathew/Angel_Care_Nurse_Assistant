@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurse_assistant/QR_Code/CreateQRPage.dart';
 
 import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';
@@ -34,7 +35,7 @@ class HomeList extends StatelessWidget {
             height: .01,
           ),
           homeButton(
-              context, "Scan QR Code", null, Icons.qr_code_scanner_outlined),
+              context, "Scan QR Code", const CreateQRPage(), Icons.qr_code_scanner_outlined),
           myDivider(),
           homeButton(context, "Patients Assigned", null, Icons.personal_injury),
           myDivider(),
@@ -50,9 +51,9 @@ class HomeList extends StatelessWidget {
 
 Widget homeButton(context, String content, final page, IconData pic) {
   return InkWell(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
-      },
+      onTap: ()=>
+        Navigator.push(context, MaterialPageRoute(builder: (context) => page))
+      ,
       child: Row(
         children: [
           SizedBox(
