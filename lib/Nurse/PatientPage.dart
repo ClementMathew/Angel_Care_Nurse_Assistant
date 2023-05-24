@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/Nurse/SymptomsPage.dart';
 import 'package:nurse_assistant/Resusables/addButton.dart';
 import 'package:nurse_assistant/Welcome%20Screens/WelcomePage.dart';
+
+import 'MediactionsPage.dart';
+import 'medicalRecords.dart';
 
 class PatientPage extends StatefulWidget {
   const PatientPage({Key? key}) : super(key: key);
@@ -19,7 +23,7 @@ class _PatientPageState extends State<PatientPage> {
         backgroundColor: secondary,
         appBar: AppBar(
           centerTitle: true,
-          toolbarHeight: height * .08,
+          toolbarHeight: height * .085,
           backgroundColor: theme,
           title: const Text(
             "Patient Record",
@@ -215,8 +219,8 @@ class _PatientPageState extends State<PatientPage> {
                               fontSize: 23,
                               decoration: TextDecoration.underline),
                         ),
-                        trailing: MyAddButton(
-                          page: null,
+                        trailing: const MyAddButton(
+                          page: SymptomsPage(),
                         ))
                   ],
                 ),
@@ -240,7 +244,7 @@ class _PatientPageState extends State<PatientPage> {
                               decoration: TextDecoration.underline),
                         ),
                         trailing: MyAddButton(
-                          page: null,
+                          page: MedicationsPage(),
                         ))
                   ],
                 ),
@@ -250,7 +254,7 @@ class _PatientPageState extends State<PatientPage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const MedicalRecordsPage(),));},
                 style: ElevatedButton.styleFrom(
                     backgroundColor: theme,
                     fixedSize: Size(width*.85, 55),
@@ -258,7 +262,7 @@ class _PatientPageState extends State<PatientPage> {
                       borderRadius: BorderRadius.circular(15),
                     )),
                 child: const Text(
-                  "Previous Medical Records ",
+                  "Previous Medical Records",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
