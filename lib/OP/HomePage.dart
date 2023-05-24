@@ -3,16 +3,15 @@ import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/Resusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
-import 'PatientPage.dart';
 
-class NurseHome extends StatefulWidget {
-  const NurseHome({Key? key}) : super(key: key);
+class OPHome extends StatefulWidget {
+  const OPHome({Key? key}) : super(key: key);
 
   @override
-  State<NurseHome> createState() => _NurseHomeState();
+  State<OPHome> createState() => _OPHomeState();
 }
 
-class _NurseHomeState extends State<NurseHome> {
+class _OPHomeState extends State<OPHome> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,7 +43,7 @@ class _NurseHomeState extends State<NurseHome> {
                         size: 24.0,
                       )),
                   const SizedBox(
-                    width: 10,
+                    width: 1,
                   ),
                   IconButton(
                     onPressed: () {},
@@ -96,14 +95,14 @@ class _NurseHomeState extends State<NurseHome> {
                         const SizedBox(
                           height: 5,
                         ),
-                        homeButton(context, "Scan QR Code", const PatientPage(),
-                            'assets/icons/nurse/scanqr.png'),
+                        homeButton(context, "Add Patient", null,
+                            'assets/icons/op/addpatient.png'),
                         myDivider(),
-                        homeButton(context, "Patients Assigned", null,
-                            'assets/icons/nurse/patientsassigned.png'),
+                        homeButton(context, "Patients List", null,
+                            'assets/icons/op/patientslist.png'),
                         myDivider(),
-                        homeButton(context, "Pharmacy", null,
-                            'assets/icons/nurse/pharmacy.png'),
+                        homeButton(context, "Discharge", null,
+                            'assets/icons/op/discharge.png'),
                         const SizedBox(
                           height: 5,
                         ),
@@ -112,15 +111,6 @@ class _NurseHomeState extends State<NurseHome> {
                   ),
                 ],
               ),
-              // const Positioned(
-              //   top: 0,
-              //   left: 0,
-              //   right: 0,
-              //   bottom: 0,
-              //   child: CustomScrollView(
-              //     slivers: [MyAppBar()],
-              //   ),
-              // ),
             ])));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'descpage.dart';
+import 'descPage.dart';
 
 class Pharmpage extends StatelessWidget {
   const Pharmpage({Key? key}) : super(key: key);
