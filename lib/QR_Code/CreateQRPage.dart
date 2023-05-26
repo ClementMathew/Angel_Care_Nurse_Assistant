@@ -24,7 +24,7 @@ class _CreateQRPageState extends State<CreateQRPage> {
           backgroundColor: theme,
           title: const Text(
             "Create QR Code",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
           ),
           centerTitle: true,
         ),

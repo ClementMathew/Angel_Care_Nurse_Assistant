@@ -1,54 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class description extends StatelessWidget {
-  // const description({Key? key}) : super(key: key);
+import '../Colors/Colors.dart';
+import '../Welcome Screens/WelcomePage.dart';
 
+class DescriptionPage extends StatelessWidget {
   final String medicineName;
   final String medicineDescription;
 
-  const description(
-      {required this.medicineName, required this.medicineDescription});
+  const DescriptionPage(
+      {super.key,
+      required this.medicineName,
+      required this.medicineDescription});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(228, 228, 228, 1),
+      backgroundColor: secondary,
       appBar: AppBar(
-        toolbarHeight: 75,
-        backgroundColor: const Color.fromRGBO(82, 164, 80, 1),
+        toolbarHeight: height * .085,
+        backgroundColor: theme,
         title: const Text(
-          "Description",
+          'Description',
           style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 22,
-            color: Color.fromRGBO(255, 255, 255, 1),
+            fontSize: 21,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        centerTitle: true,
       ),
       body: Center(
-        child: Card(
-          color: Color.fromRGBO(255, 255, 255, 1),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
-          ),
-          margin: const EdgeInsets.all(16.0),
+        child: Container(width: width*.92,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(18)),
+          margin: const EdgeInsets.all(15.0),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.only(left: 20,right: 20,top: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   medicineName,
-                  style: const TextStyle(
-                    fontSize: 20.0,
+                  style: GoogleFonts.ibarraRealNova(
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline,
                   ),
                 ),
-                const SizedBox(height: 16.0),
-                Text(
-                  medicineDescription,
-                  style: const TextStyle(fontSize: 18.0),
+                const SizedBox(height: 12.0),
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Text(
+                    medicineDescription,
+                    style: GoogleFonts.ibarraRealNova(fontSize: 25),
+                  ),
                 ),
               ],
             ),

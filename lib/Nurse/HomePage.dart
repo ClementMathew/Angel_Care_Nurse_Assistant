@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/Nurse/assignedPatient.dart';
+import 'package:nurse_assistant/Nurse/notificationsPage.dart';
+import 'package:nurse_assistant/Nurse/pharmacyPage.dart';
+import 'package:nurse_assistant/Nurse/profilePage.dart';
 import 'package:nurse_assistant/Resusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
@@ -28,7 +32,7 @@ class _NurseHomeState extends State<NurseHome> {
                   ),
                 ),
                 leading: IconButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));},
                   icon: const Icon(
                     Icons.account_circle_rounded,
                     color: Colors.white,
@@ -37,7 +41,7 @@ class _NurseHomeState extends State<NurseHome> {
                 ),
                 actions: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));},
                       icon: const Icon(
                         Icons.notifications,
                         color: Colors.white,
@@ -99,10 +103,10 @@ class _NurseHomeState extends State<NurseHome> {
                         homeButton(context, "Scan QR Code", const PatientPage(),
                             'assets/icons/nurse/scanqr.png'),
                         myDivider(),
-                        homeButton(context, "Patients Assigned", null,
+                        homeButton(context, "Patients Assigned", const AssignedPatientsPage(),
                             'assets/icons/nurse/patientsassigned.png'),
                         myDivider(),
-                        homeButton(context, "Pharmacy", null,
+                        homeButton(context, "Pharmacy", const PharmacyPage(),
                             'assets/icons/nurse/pharmacy.png'),
                         const SizedBox(
                           height: 5,

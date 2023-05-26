@@ -77,7 +77,7 @@ class _MyWidgetState extends State<MedicationsPage> {
         title: const Text(
           'Medications',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 21,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -86,13 +86,16 @@ class _MyWidgetState extends State<MedicationsPage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: [const Padding(
+            padding: EdgeInsets.only(top: 20,bottom: 10),
+            child: Text("-----  Press the '+' button to add medications  -----",style: TextStyle(fontSize: 18,color: Colors.black54),),
+          ),
             Expanded(
               child: ListView.builder(
                 itemCount: displayTextList.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+                    padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
                     child: Container(
                       decoration: BoxDecoration(
                         boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), // shadow color
@@ -115,7 +118,7 @@ class _MyWidgetState extends State<MedicationsPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20,top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

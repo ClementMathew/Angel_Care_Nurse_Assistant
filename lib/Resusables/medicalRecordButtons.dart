@@ -21,17 +21,19 @@ Widget MRButton(String content) {
             color: const Color.fromRGBO(0, 172, 200, 1),
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(25)),
-        child: Center(
-            child: Text(
-          content,
-          style: const TextStyle(shadows: [
-            Shadow(
-              blurRadius: 7, // shadow blur
-              color: Colors.black45, // shadow color
-              offset: Offset(0, 1), // how much shadow will be shown
-            ),
-          ], fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white,letterSpacing: .5),
-        )),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(25,20,20,20),
+          child: Text(
+            content,
+            style: const TextStyle(shadows: [
+          Shadow(
+            blurRadius: 7, // shadow blur
+            color: Colors.black45, // shadow color
+            offset: Offset(0, 1), // how much shadow will be shown
+          ),
+            ], fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white,letterSpacing: .5),
+          ),
+        ),
       ),
     ),
   );

@@ -28,7 +28,7 @@ class _PatientPageState extends State<PatientPage> {
           title: const Text(
             "Patient Record",
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 21,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -73,8 +73,8 @@ class _PatientPageState extends State<PatientPage> {
                   child: IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.add_a_photo,
-                      size: 50,
+                      Icons.person,
+                      size: 80,
                     ),
                     color: theme,
                   ),
@@ -88,20 +88,23 @@ class _PatientPageState extends State<PatientPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: width * .36,
-                      height: height * .1,
-                      child: Text("Mohammad Niyas K P",
-                          style: GoogleFonts.roboto(
-                            height: 1.3,
-                            color: Colors.black,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                          )),
+                        width: width * .365,
+                        height: height * .13,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text("Clement Mathew",
+                            style: GoogleFonts.roboto(
+                              height: 1.3,
+                              color: Colors.black,
+                              fontSize: 27,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ),
                     ),
                     Chip(
                       backgroundColor: Colors.white,
                       shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
                       label: Text(
                         "Age : 21",
                         style: GoogleFonts.ibarraRealNova(
@@ -243,7 +246,7 @@ class _PatientPageState extends State<PatientPage> {
                               fontSize: 23,
                               decoration: TextDecoration.underline),
                         ),
-                        trailing: MyAddButton(
+                        trailing: const MyAddButton(
                           page: MedicationsPage(),
                         ))
                   ],
