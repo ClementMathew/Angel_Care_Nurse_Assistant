@@ -46,15 +46,15 @@ class AssignedPatientsPage extends StatelessWidget {
               ),
             ),
           ),
-          patient(),
-          patient(),
+          patientAssg(),
+          patientAssg(),
         ],
       ),
     );
   }
 }
 
-Widget patient(){
+Widget patientAssg(){
   return Padding(
     padding: const EdgeInsets.only(top: 15),
     child: Container(

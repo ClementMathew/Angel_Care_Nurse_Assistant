@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/OP/addPatient.dart';
+import 'package:nurse_assistant/OP/discharge.dart';
+import 'package:nurse_assistant/OP/patientList.dart';
 import 'package:nurse_assistant/Resusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
@@ -95,13 +98,13 @@ class _OPHomeState extends State<OPHome> {
                         const SizedBox(
                           height: 5,
                         ),
-                        homeButton(context, "Add Patient", null,
+                        homeButton(context, "Add Patient", const AddPatientPage(),
                             'assets/icons/op/addpatient.png'),
                         myDivider(),
-                        homeButton(context, "Patients List", null,
+                        homeButton(context, "Patients List", const PatientListPage(),
                             'assets/icons/op/patientslist.png'),
                         myDivider(),
-                        homeButton(context, "Discharge", null,
+                        homeButton(context, "Discharge", const DischargePage(),
                             'assets/icons/op/discharge.png'),
                         const SizedBox(
                           height: 5,

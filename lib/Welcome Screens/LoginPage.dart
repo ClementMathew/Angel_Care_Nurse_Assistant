@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: height * .07,
                 ),
-                filledButton(context, "Login", false, null, () {Navigator.push(context, MaterialPageRoute(builder: (context) => const DoctorHome()));}),
+                filledButton(context, "Login", false, null, () {Navigator.push(context, MaterialPageRoute(builder: (context) => const OPHome()));}),
                 SizedBox(
                   height: height * .06,
                 )

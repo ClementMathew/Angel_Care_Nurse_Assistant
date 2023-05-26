@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/Doctor/Casuality.dart';
+import 'package:nurse_assistant/Doctor/OT.dart';
+import 'package:nurse_assistant/Doctor/generalWard.dart';
+import 'package:nurse_assistant/Nurse/PatientPage.dart';
 import 'package:nurse_assistant/Resusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
+import 'ICU.dart';
 
 class DoctorHome extends StatefulWidget {
   const DoctorHome({Key? key}) : super(key: key);
@@ -96,19 +101,19 @@ class _DoctorHomeState extends State<DoctorHome> {
                           const SizedBox(
                             height: 5,
                           ),
-                          homeButton(context, "Scan QR Code", null,
+                          homeButton(context, "Scan QR Code", const PatientPage(),
                             'assets/icons/doctor/scanqr.png'),
                           myDivider(),
-                          homeButton(context, "General Ward", null,
+                          homeButton(context, "General Ward", const GeneralWardPage(),
                               'assets/icons/doctor/generalward.png'),
                           myDivider(),
-                          homeButton(context, "Intensive Care Unit", null,
+                          homeButton(context, "Intensive Care Unit", const ICUPage(),
                               'assets/icons/doctor/icu.png'),
                           myDivider(),
-                          homeButton(context, "Casuality", null,
+                          homeButton(context, "Casuality", const CasualityPage(),
                               'assets/icons/doctor/casuality.png'),
                           myDivider(),
-                          homeButton(context, "Operation Theatre", null,
+                          homeButton(context, "Operation Theatre", const OTPage(),
                               'assets/icons/doctor/ot.png'),
                           const SizedBox(
                             height: 5,
