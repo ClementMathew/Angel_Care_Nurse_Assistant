@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nurse_assistant/Nurse/pharmacyPage.dart';
 
 import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
-class GeneralWardPage extends StatefulWidget {
-  const GeneralWardPage({Key? key}) : super(key: key);
+class NursesListPage extends StatefulWidget {
+  const NursesListPage({Key? key}) : super(key: key);
 
   @override
-  State<GeneralWardPage> createState() => _GeneralWardPageState();
+  State<NursesListPage> createState() => _NursesListPageState();
 }
 
-class _GeneralWardPageState extends State<GeneralWardPage> {
+class _NursesListPageState extends State<NursesListPage> {
+
+  TextEditingController searchController =TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +24,7 @@ class _GeneralWardPageState extends State<GeneralWardPage> {
         toolbarHeight: height * .085,
         backgroundColor: theme,
         title: const Text(
-          'General Ward',
+          'Patients List',
           style: TextStyle(
             fontSize: 21,
             fontWeight: FontWeight.bold,
@@ -28,19 +32,29 @@ class _GeneralWardPageState extends State<GeneralWardPage> {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          children: [
-            staffDoc(),
-            staffDoc(),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: height * .012,
+              ),
+              mySearch(searchController),
+              SizedBox(
+                height: height * .008,
+              ),
+              staffAdmin(),
+              staffAdmin(),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-Widget staffDoc() {
+
+Widget staffAdmin() {
   return Padding(
     padding: const EdgeInsets.only(top: 15),
     child: Container(
@@ -79,13 +93,6 @@ Widget staffDoc() {
             ],
           ),
           const Spacer(),
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.notifications_active_sharp,
-                color: theme,
-                size: 30,
-              )),
           IconButton(
               onPressed: () {},
               icon: Icon(

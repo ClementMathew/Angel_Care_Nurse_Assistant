@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/OP/addPatient.dart';
 import 'package:nurse_assistant/OP/discharge.dart';
-import 'package:nurse_assistant/OP/patientList.dart';
+import 'package:nurse_assistant/OP/patientEdit.dart';
 import 'package:nurse_assistant/Resusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
@@ -39,23 +39,15 @@ class _OPHomeState extends State<OPHome> {
                 ),
                 actions: [
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.notifications,
-                        color: Colors.white,
-                        size: 24.0,
-                      )),
-                  const SizedBox(
-                    width: 1,
-                  ),
-                  IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       Icons.more_vert,
                       color: Colors.white,
                       size: 26,
                     ),
-                  )
+                  ),const SizedBox(
+                    width: 5,
+                  ),
                 ]),
             body: Stack(children: [
               Container(
@@ -101,7 +93,7 @@ class _OPHomeState extends State<OPHome> {
                         homeButton(context, "Add Patient", const AddPatientPage(),
                             'assets/icons/op/addpatient.png'),
                         myDivider(),
-                        homeButton(context, "Patients List", const PatientListPage(),
+                        homeButton(context, "Update Patient", const PatientEditPage(),
                             'assets/icons/op/patientslist.png'),
                         myDivider(),
                         homeButton(context, "Discharge", const DischargePage(),

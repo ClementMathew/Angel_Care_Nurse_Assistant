@@ -3,11 +3,11 @@ import 'package:nurse_assistant/Welcome%20Screens/WelcomePage.dart';
 
 Widget MRButton(String content) {
   return Padding(
-    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+    padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
     child: InkWell(
       onTap: (){},
       child: Container(
-        height: height * .08,
+        height: height * .075,
         width: width * .88,
         decoration: BoxDecoration(
             boxShadow: [
@@ -31,7 +31,7 @@ Widget MRButton(String content) {
             color: Colors.black45, // shadow color
             offset: Offset(0, 1), // how much shadow will be shown
           ),
-            ], fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white,letterSpacing: .5),
+            ], fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white,letterSpacing: .5),
           ),
         ),
       ),

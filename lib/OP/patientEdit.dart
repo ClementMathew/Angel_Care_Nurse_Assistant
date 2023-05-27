@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nurse_assistant/Nurse/pharmacyPage.dart';
 
 import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
-class PatientListPage extends StatefulWidget {
-  const PatientListPage({Key? key}) : super(key: key);
+class PatientEditPage extends StatefulWidget {
+  const PatientEditPage({Key? key}) : super(key: key);
 
   @override
-  State<PatientListPage> createState() => _PatientListPageState();
+  State<PatientEditPage> createState() => _PatientEditPageState();
 }
 
-class _PatientListPageState extends State<PatientListPage> {
+class _PatientEditPageState extends State<PatientEditPage> {
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -22,7 +23,7 @@ class _PatientListPageState extends State<PatientListPage> {
         toolbarHeight: height * .085,
         backgroundColor: theme,
         title: const Text(
-          'Patients List',
+          'Update Patient',
           style: TextStyle(
             fontSize: 21,
             fontWeight: FontWeight.bold,
@@ -37,35 +38,7 @@ class _PatientListPageState extends State<PatientListPage> {
               SizedBox(
                 height: height * .012,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
-                child: SizedBox(
-                    height: height * .06,
-                    width: width * .89,
-                    child: SearchBar(
-                      onChanged: (value) {
-                        // changeSearch(value);
-                      },
-                      controller: searchController,
-                      elevation: const MaterialStatePropertyAll(3),
-                      trailing: const [
-                        Padding(
-                          padding: EdgeInsets.only(top: 3, right: 7),
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.black54,
-                          ),
-                        )
-                      ],
-                      padding: const MaterialStatePropertyAll(
-                          EdgeInsets.only(left: 15, right: 5, bottom: 2.3)),
-                      hintText: "Search",
-                      hintStyle: const MaterialStatePropertyAll(
-                          TextStyle(color: Colors.black, fontSize: 18)),
-                      textStyle: const MaterialStatePropertyAll(
-                          TextStyle(color: Colors.black, fontSize: 18)),
-                    )),
-              ),
+              mySearch(searchController),
               SizedBox(
                 height: height * .008,
               ),
@@ -84,7 +57,7 @@ Widget patientEdit() {
     padding: const EdgeInsets.only(top: 15),
     child: Container(
       width: width * .9,
-      height: height * .14,
+      height: height * .12,
       decoration: BoxDecoration(
           border: Border.all(width: 3, color: theme),
           color: Colors.white,
@@ -103,7 +76,7 @@ Widget patientEdit() {
                 child: Text(
                   "Name : Clement Mathew",
                   style: GoogleFonts.ibarraRealNova(
-                      fontWeight: FontWeight.bold, fontSize: 23),
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               Padding(
@@ -111,7 +84,7 @@ Widget patientEdit() {
                 child: Text(
                   "Bed Number : 506",
                   style: GoogleFonts.ibarraRealNova(
-                      fontWeight: FontWeight.bold, fontSize: 23),
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               const SizedBox(height: .5),
@@ -123,7 +96,7 @@ Widget patientEdit() {
               icon: Icon(
                 Icons.edit,
                 color: theme,
-                size: 33,
+                size: 30,
               )),
           const SizedBox(width: 5,)
         ],

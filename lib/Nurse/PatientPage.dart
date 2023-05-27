@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/Nurse/SymptomsPage.dart';
 import 'package:nurse_assistant/Resusables/addButton.dart';
+import 'package:nurse_assistant/Resusables/buttons.dart';
 import 'package:nurse_assistant/Welcome%20Screens/WelcomePage.dart';
 
 import 'MediactionsPage.dart';
@@ -88,15 +89,15 @@ class _PatientPageState extends State<PatientPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                        width: width * .365,
-                        height: height * .13,
+                      width: width * .365,
+                      height: height * .13,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: Text("Clement Mathew",
                             style: GoogleFonts.roboto(
                               height: 1.3,
                               color: Colors.black,
-                              fontSize: 27,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
                             )),
                       ),
@@ -108,7 +109,7 @@ class _PatientPageState extends State<PatientPage> {
                       label: Text(
                         "Age : 21",
                         style: GoogleFonts.ibarraRealNova(
-                            fontSize: 25, fontWeight: FontWeight.bold),
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       elevation: 3,
                       padding: const EdgeInsets.all(8),
@@ -254,22 +255,13 @@ class _PatientPageState extends State<PatientPage> {
               ),
             ),
             const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: ElevatedButton(
-                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const MedicalRecordsPage(),));},
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: theme,
-                    fixedSize: Size(width*.85, 55),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    )),
-                child: const Text(
-                  "Previous Medical Records",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-              ),
-            )
+            longButton("Previous Medical Records", () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MedicalRecordsPage(),
+                  ));
+            })
           ],
         ),
       ),

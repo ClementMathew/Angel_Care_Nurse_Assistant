@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nurse_assistant/Resusables/buttons.dart';
+import 'package:nurse_assistant/Resusables/datePickerColor.dart';
 
 import '../Colors/Colors.dart';
 import '../Resusables/textFieldColor.dart';
@@ -17,6 +19,7 @@ class _AddPatientPageState extends State<AddPatientPage> {
   TextEditingController ageTextController = TextEditingController();
   TextEditingController phoneTextController = TextEditingController();
   TextEditingController diseaseTextController = TextEditingController();
+  TextEditingController admissionDate = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,36 +45,23 @@ class _AddPatientPageState extends State<AddPatientPage> {
                   height: height * .04,
                 ),
                 CircleAvatar(
-                  radius: width * .25,
+                  radius: width * .23,
                   backgroundColor: theme,
-                  child: Text("Add Photo",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,letterSpacing: .5),),
+                  child: const Text("Add Photo",style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white,letterSpacing: .5),),
                 ),
                 const SizedBox(
                   height: 25,
                 ),textFieldColor(false, false, null, "Name", nameTextController),
                 SizedBox(height: height * .03),
-                textFieldColor(false, true,null, "Age", ageTextController),
+                textFieldColor(false, true,null, "Patient Age", ageTextController),
+                SizedBox(height: height * .03),
+                myDatePickerColor(context, admissionDate, "Admitted Date"),
                 SizedBox(height: height * .03),
                 textFieldColor(false, true, null, "Phone Number", phoneTextController),
-                SizedBox(height: height * .01),
+                SizedBox(height: height * .008),
                 textFieldColor(false, false,null, "Disease", diseaseTextController),
-                SizedBox(height: height * .04),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: theme,
-                        fixedSize: Size(width*.84, 55),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        )),
-                    child: const Text(
-                      "Confirm",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                ),
+                SizedBox(height: height * .03),
+                longButton("Confirm", (){})
               ])),
         )
     );

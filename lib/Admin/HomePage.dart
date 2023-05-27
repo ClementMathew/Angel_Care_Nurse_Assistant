@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:nurse_assistant/Admin/attendersList.dart';
+import 'package:nurse_assistant/Admin/nursesList.dart';
+import 'package:nurse_assistant/Admin/patientAssignment.dart';
+import 'package:nurse_assistant/Admin/patientList.dart';
+import 'package:nurse_assistant/Admin/pharmacistsList.dart';
+import 'package:nurse_assistant/Admin/reportUpload.dart';
+import 'package:nurse_assistant/Admin/shiftAssignment.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/QR_Code/CreateQRPage.dart';
 import 'package:nurse_assistant/Resusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
+import 'doctorsList.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({Key? key}) : super(key: key);
@@ -36,28 +45,20 @@ class _AdminHomeState extends State<AdminHome> {
                 ),
                 actions: [
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.notifications,
-                        color: Colors.white,
-                        size: 24.0,
-                      )),
-                  const SizedBox(
-                    width: 1,
-                  ),
-                  IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       Icons.more_vert,
                       color: Colors.white,
                       size: 26,
                     ),
-                  )
+                  ),const SizedBox(
+                    width: 5,
+                  ),
                 ]),
             body: SingleChildScrollView(
               child: Stack(children: [
                 Container(
-                  height: height * 1.622,
+                  height: height * 1.49,
                   width: width,
                   color: theme,
                 ),
@@ -75,7 +76,7 @@ class _AdminHomeState extends State<AdminHome> {
                       height: height * .45,
                     ),
                     Container(
-                      height: height * .125 * 9,
+                      height: height * .11 * 9,
                       width: width,
                       decoration: BoxDecoration(
                           color: secondary,
@@ -94,36 +95,36 @@ class _AdminHomeState extends State<AdminHome> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           const SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                           homeButton(
-                              context, "Create QR Code", null, 'assets/icons/admin/createqr.png'),
+                              context, "Create QR Code", const CreateQRPage(), 'assets/icons/admin/createqr.png'),
                           myDivider(),
-                          homeButton(context, "Report Upload", null,
+                          homeButton(context, "Report Upload", const ReportUploadPage(),
                               'assets/icons/admin/reportupload.png'),
                           myDivider(),
-                          homeButton(context, "Shift Assignment", null,
+                          homeButton(context, "Shift Assignment", const ShiftAssignPage(),
                               'assets/icons/admin/shiftassignment.png'),
                           myDivider(),
-                          homeButton(context, "Patient Assignment", null,
+                          homeButton(context, "Patient Assignment", const PatientAssignPage(),
                               'assets/icons/admin/patientassignment.png'),
                           myDivider(),
-                          homeButton(context, "Nurses List", null,
+                          homeButton(context, "Nurses List", const NursesListPage(),
                               'assets/icons/admin/nurseslist.png'),
                           myDivider(),
-                          homeButton(context, "Patients List", null,
+                          homeButton(context, "Patients List", const PatientListPage(),
                               'assets/icons/admin/patientslist.png'),
                           myDivider(),
-                          homeButton(context, "Doctors List", null,
+                          homeButton(context, "Doctors List", const DoctorsListPage(),
                               'assets/icons/admin/doctorslist.png'),
                           myDivider(),
-                          homeButton(context, "Pharmacists List", null,
+                          homeButton(context, "Pharmacists List", const PharmacistsListPage(),
                               'assets/icons/admin/pharmacistslist.png'),
                           myDivider(),
-                          homeButton(context, "Attenders List", null,
+                          homeButton(context, "Attenders List", const AttendersListPage(),
                               'assets/icons/admin/attenderslist.png'),
                           const SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                         ],
                       ),

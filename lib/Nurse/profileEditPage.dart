@@ -59,16 +59,16 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
               child:
                   Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             SizedBox(
-              height: height * .04,
+              height: height * .035,
             ),
             CircleAvatar(
-              radius: width * .26,
+              radius: width * .24,
               backgroundColor: theme,
               child: ClipOval(
                 child: Align(
                   widthFactor: .96,
                   child: CircleAvatar(
-                    radius: width * .245,
+                    radius: width * .225,
                     backgroundColor: background,
                     child: Icon(Icons.add_a_photo, size: width * .18, color: theme),
                   ),
@@ -76,33 +76,18 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
               ),
             ),
             const SizedBox(
-              height: 25,
+              height: 20,
             ),textFieldColor(false, false, null, "Name", nameTextController),
                     SizedBox(height: height * .03),
                     textFieldColor(false, true,null, "Phone Number", phoneTextController),
-                    SizedBox(height: height * .007),
+                    SizedBox(height: height * .008),
                     MyDropDownColor(myList: groups,isEdit: true,),
                     SizedBox(height: height * .03),
                     MyDropDownColor(myList: departments,isEdit: true,),
                     SizedBox(height: height * .03),
                     textFieldColor(false, false, null, "Staff Id Number", staffIdTextController),
-                    SizedBox(height: height * .04),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: theme,
-                            fixedSize: Size(width*.84, 55),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            )),
-                        child: const Text(
-                          "Confirm",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                      ),
-                    ),
+                    SizedBox(height: height * .03),
+                    longButton("Confirm",(){})
           ])),
         ));
   }

@@ -32,13 +32,13 @@ class _CreateQRPageState extends State<CreateQRPage> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(height: height*.1),
+                SizedBox(height: height*.08),
                 QrImageView(
                   data: controller.text,
                   backgroundColor: secondary,
                   size: 250,
-                ),SizedBox(height: height*.1),
-                textField(false, false, null, "Enter the data", controller),SizedBox(height: height*.1),
+                ),SizedBox(height: height*.08),
+                textField(false, false, null, "Enter the data", controller),SizedBox(height: height*.08),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {});
@@ -48,7 +48,21 @@ class _CreateQRPageState extends State<CreateQRPage> {
                       fixedSize: Size(width * .70, height * .065),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30))),
-                  child: const Text('Scan',
+                  child: const Text('Create',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          letterSpacing: .5)),
+                ),SizedBox(height: height*.04),ElevatedButton(
+                  onPressed: () {
+
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: theme,
+                      fixedSize: Size(width * .70, height * .065),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30))),
+                  child: const Text('Print',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,

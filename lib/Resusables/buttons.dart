@@ -3,6 +3,24 @@ import 'package:flutter/material.dart';
 import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
+Widget longButton(String name,Function onTap){
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 20),
+    child: ElevatedButton(
+      onPressed: () {onTap();},
+      style: ElevatedButton.styleFrom(
+          backgroundColor: theme,
+          fixedSize: Size(width*.8, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          )),
+      child: Text(
+        name,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      ),
+    ),
+  );
+}
 
 Widget filledButton(BuildContext context, String name, bool isLogin, final page,
     Function onTap) {

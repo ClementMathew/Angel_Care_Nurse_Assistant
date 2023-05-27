@@ -39,35 +39,7 @@ class _PharmacyPageState extends State<PharmacyPage> {
               SizedBox(
                 height: height * .012,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
-                child: SizedBox(
-                    height: height * .06,
-                    width: width * .89,
-                    child: SearchBar(
-                      onChanged: (value) {
-                        // changeSearch(value);
-                      },
-                      controller: searchController,
-                      elevation: const MaterialStatePropertyAll(3),
-                      trailing: const [
-                        Padding(
-                          padding: EdgeInsets.only(top: 3, right: 7),
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.black54,
-                          ),
-                        )
-                      ],
-                      padding: const MaterialStatePropertyAll(
-                          EdgeInsets.only(left: 15, right: 5, bottom: 2.3)),
-                      hintText: "Search",
-                      hintStyle: const MaterialStatePropertyAll(
-                          TextStyle(color: Colors.black, fontSize: 18)),
-                      textStyle: const MaterialStatePropertyAll(
-                          TextStyle(color: Colors.black, fontSize: 18)),
-                    )),
-              ),
+              mySearch(searchController),
               SizedBox(
                 height: height * .008,
               ),
@@ -85,7 +57,7 @@ Widget medicine(context){
   return Padding(
     padding: const EdgeInsets.only(top: 10),
     child: Container(
-      height: height * .145,
+      height: height * .12,
       width: width * .9,
       decoration: BoxDecoration(
           boxShadow: [
@@ -110,7 +82,7 @@ Widget medicine(context){
                 child: Text(
                   "Name : Paracetamol",
                   style: GoogleFonts.ibarraRealNova(
-                      fontWeight: FontWeight.bold, fontSize: 24),
+                      fontWeight: FontWeight.bold, fontSize: 21),
                 ),
               ),
               Padding(
@@ -118,7 +90,7 @@ Widget medicine(context){
                 child: Text(
                   "Quantity : 120",
                   style: GoogleFonts.ibarraRealNova(
-                      fontWeight: FontWeight.bold, fontSize: 24),
+                      fontWeight: FontWeight.bold, fontSize: 21),
                 ),
               ),
               const SizedBox(height: 1),
@@ -138,5 +110,38 @@ Widget medicine(context){
         ],
       ),
     ),
+  );
+}
+
+Widget mySearch(searchController)
+{
+  return Padding(
+    padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
+    child: SizedBox(
+        height: height * .06,
+        width: width * .89,
+        child: SearchBar(
+          onChanged: (value) {
+            // changeSearch(value);
+          },
+          controller: searchController,
+          elevation: const MaterialStatePropertyAll(3),
+          trailing: const [
+            Padding(
+              padding: EdgeInsets.only(top: 3, right: 7),
+              child: Icon(
+                Icons.search,
+                color: Colors.black54,
+              ),
+            )
+          ],
+          padding: const MaterialStatePropertyAll(
+              EdgeInsets.only(left: 15, right: 5, bottom: 2.3)),
+          hintText: "Search",
+          hintStyle: const MaterialStatePropertyAll(
+              TextStyle(color: Colors.black, fontSize: 18)),
+          textStyle: const MaterialStatePropertyAll(
+              TextStyle(color: Colors.black, fontSize: 18)),
+        )),
   );
 }

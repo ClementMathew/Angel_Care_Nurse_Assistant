@@ -46,20 +46,20 @@ class AssignedPatientsPage extends StatelessWidget {
               ),
             ),
           ),
-          patientAssg(),
-          patientAssg(),
+          patient(),
+          patient(),
         ],
       ),
     );
   }
 }
 
-Widget patientAssg(){
+Widget patient(){
   return Padding(
     padding: const EdgeInsets.only(top: 15),
     child: Container(
       width: width*.9,
-      height: height*.14,
+      height: height*.12,
       decoration: BoxDecoration(
           border: Border.all(width: 3,color: theme),
           color: Colors.white,
@@ -73,11 +73,11 @@ Widget patientAssg(){
           const SizedBox(height: .5),
           Padding(
             padding: const EdgeInsets.only(left: 22),
-            child: Text("Name : Clement Mathew",style: GoogleFonts.ibarraRealNova( fontWeight: FontWeight.bold,fontSize: 23),),
+            child: Text("Name : Clement Mathew",style: GoogleFonts.ibarraRealNova( fontWeight: FontWeight.bold,fontSize: 20),),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 22),
-            child: Text("Bed Number : 506",style: GoogleFonts.ibarraRealNova( fontWeight: FontWeight.bold,fontSize: 23),),
+            child: Text("Bed Number : 506",style: GoogleFonts.ibarraRealNova( fontWeight: FontWeight.bold,fontSize: 20),),
           ),
           const SizedBox(height: .5),
         ],

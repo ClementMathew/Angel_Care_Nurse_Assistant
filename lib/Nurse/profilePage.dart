@@ -56,7 +56,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: CircleAvatar(
                     radius: width * .245,
                     backgroundColor: background,
-                    child: Icon(Icons.add_a_photo, size: width * .18, color: theme),
+                    child: Icon(Icons.add_a_photo,
+                        size: width * .18, color: theme),
                   ),
                 ),
               ),
@@ -69,11 +70,11 @@ class _ProfilePageState extends State<ProfilePage> {
               style:
                   GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 25),
             ),
-            const SizedBox(
-              height: 24,
+            SizedBox(
+              height: height * .05,
             ),
             Container(
-              height: height * .46,
+              height: height * .45,
               width: width * .88,
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -85,16 +86,20 @@ class _ProfilePageState extends State<ProfilePage> {
                       left: BorderSide(color: theme, width: 5),
                       right: BorderSide(color: theme, width: 5))),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 10,
+                    height: .1,
                   ),
                   profileText("Staff Id : ", "22765", false),
                   profileText("Phone : ", "8156819141", false),
                   profileText("Email : ", "clementmathew924@gmail.com", false),
                   profileText("Blood Group : ", "O +ve", true),
                   profileText("Working as : ", "Nurse", true),
+                  const SizedBox(
+                    height: .01,
+                  ),
                 ],
               ),
             )
@@ -105,7 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
 Widget profileText(detail, content, bool isShort) {
   return Padding(
-    padding: const EdgeInsets.only(left: 35, top: 25),
+    padding: const EdgeInsets.only(left: 35),
     child: Row(
       children: [
         SizedBox(

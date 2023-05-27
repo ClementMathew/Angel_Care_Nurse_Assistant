@@ -62,7 +62,7 @@ class _DoctorHomeState extends State<DoctorHome> {
             body: SingleChildScrollView(
               child: Stack(children: [
                 Container(
-                  height: height * 1.13,
+                  height: height * 1.04,
                   width: width,
                   color: theme,
                 ),
@@ -80,7 +80,7 @@ class _DoctorHomeState extends State<DoctorHome> {
                       height: height * .45,
                     ),
                     Container(
-                      height: height * .125 * 5,
+                      height: height * .11 * 5,
                       width: width,
                       decoration: BoxDecoration(
                           color: secondary,
@@ -99,7 +99,7 @@ class _DoctorHomeState extends State<DoctorHome> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           const SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                           homeButton(context, "Scan QR Code", const PatientPage(),
                             'assets/icons/doctor/scanqr.png'),
@@ -116,7 +116,7 @@ class _DoctorHomeState extends State<DoctorHome> {
                           homeButton(context, "Operation Theatre", const OTPage(),
                               'assets/icons/doctor/ot.png'),
                           const SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                         ],
                       ),

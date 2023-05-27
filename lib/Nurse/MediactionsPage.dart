@@ -90,12 +90,13 @@ class _MyWidgetState extends State<MedicationsPage> {
             padding: EdgeInsets.only(top: 20,bottom: 10),
             child: Text("-----  Press the '+' button to add medications  -----",style: TextStyle(fontSize: 18,color: Colors.black54),),
           ),
+            const SizedBox(height: 2,),
             Expanded(
               child: ListView.builder(
                 itemCount: displayTextList.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
+                    padding: const EdgeInsets.fromLTRB(15, 7.5, 15, 7.5),
                     child: Container(
                       decoration: BoxDecoration(
                         boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), // shadow color
@@ -108,9 +109,9 @@ class _MyWidgetState extends State<MedicationsPage> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(15),
-                        child: Text('${index + 1}. ${displayTextList[index]}',
+                        child: Text('${index + 1}.  ${displayTextList[index]}',
                             style: const TextStyle(color: Colors.black87,
-                                fontSize: 20, fontWeight: FontWeight.w600)),
+                                fontSize: 18, fontWeight: FontWeight.w600)),
                       ),
                     ),
                   );
@@ -121,19 +122,19 @@ class _MyWidgetState extends State<MedicationsPage> {
               padding: const EdgeInsets.only(bottom: 20,top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: [const SizedBox(width: 10,),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                         backgroundColor: theme,
-                        fixedSize: Size(width * .65, 55),
+                        fixedSize: Size(width * .6, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         )),
                     child: const Text(
                       "Done",
                       style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
                   ElevatedButton(
@@ -142,15 +143,15 @@ class _MyWidgetState extends State<MedicationsPage> {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: theme,
-                          fixedSize: Size(width * .15, 55),
+                          fixedSize: Size(width * .1, 50),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           )),
                       child: const Icon(
                         Icons.add,
                         color: Colors.white,
-                        size: 35,
-                      )),
+                        size: 30,
+                      )),const SizedBox(width: 10,)
                 ],
               ),
             )

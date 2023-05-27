@@ -11,28 +11,28 @@ Widget textFieldColor(
         inputFormatters:isPhoneType ? [FilteringTextInputFormatter.digitsOnly]:null,
         controller: control,
         obscureText: isPasswordType,
-        style: const TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
         decoration: InputDecoration(
           fillColor: Colors.white,
             filled: true,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: name,
             labelStyle:
-            TextStyle(fontSize: 17, color: theme, letterSpacing: .2),
+            TextStyle(fontSize: 16, color: theme, letterSpacing: .2),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: background, width: 1)),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: background, width: 1)),
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: background, width: 1)),
             disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: background, width: 1)),
             hintText: hint,
-            hintStyle: const TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.normal)),
+            hintStyle: const TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.normal)),
         maxLength: checkLen(hint),
         keyboardType:
         isPasswordType ? TextInputType.visiblePassword : check(hint)),

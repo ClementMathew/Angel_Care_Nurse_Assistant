@@ -6,7 +6,7 @@ Widget MyArrowButton (context,page){
   return InkWell(
     onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => page,));},
     child: Container(
-      height: height*.1   ,
+      height: height*.08,
       width: width*.09,
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,

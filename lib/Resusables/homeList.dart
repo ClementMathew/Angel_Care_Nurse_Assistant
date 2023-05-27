@@ -13,8 +13,8 @@ Widget homeButton(context, String content, final page, var pic) {
             width: width * .12,
           ),
           SizedBox(
-              height: 60,
-              width: 60,
+              height: 55,
+              width: 55,
               child: IconButton(
                 icon: ImageIcon(AssetImage(pic), size: 45, color: theme),
                 onPressed: () {
@@ -29,7 +29,7 @@ Widget homeButton(context, String content, final page, var pic) {
             content,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 22,
+              fontSize: 21,
             ),
           ),
         ],

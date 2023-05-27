@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nurse_assistant/Nurse/pharmacyPage.dart';
 
 import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';
@@ -38,35 +39,7 @@ class _DischargePageState extends State<DischargePage> {
               SizedBox(
                 height: height * .012,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
-                child: SizedBox(
-                    height: height * .06,
-                    width: width * .89,
-                    child: SearchBar(
-                      onChanged: (value) {
-                        // changeSearch(value);
-                      },
-                      controller: searchController,
-                      elevation: const MaterialStatePropertyAll(3),
-                      trailing: const [
-                        Padding(
-                          padding: EdgeInsets.only(top: 3, right: 7),
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.black54,
-                          ),
-                        )
-                      ],
-                      padding: const MaterialStatePropertyAll(
-                          EdgeInsets.only(left: 15, right: 5, bottom: 2.3)),
-                      hintText: "Search",
-                      hintStyle: const MaterialStatePropertyAll(
-                          TextStyle(color: Colors.black, fontSize: 18)),
-                      textStyle: const MaterialStatePropertyAll(
-                          TextStyle(color: Colors.black, fontSize: 18)),
-                    )),
-              ),
+              mySearch(searchController),
               SizedBox(
                 height: height * .008,
               ),
@@ -85,7 +58,7 @@ Widget patientDis() {
     padding: const EdgeInsets.only(top: 15),
     child: Container(
       width: width * .9,
-      height: height * .14,
+      height: height * .12,
       decoration: BoxDecoration(
           border: Border.all(width: 3, color: theme),
           color: Colors.white,
@@ -104,7 +77,7 @@ Widget patientDis() {
                 child: Text(
                   "Name : Clement Mathew",
                   style: GoogleFonts.ibarraRealNova(
-                      fontWeight: FontWeight.bold, fontSize: 23),
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               Padding(
@@ -112,7 +85,7 @@ Widget patientDis() {
                 child: Text(
                   "Bed Number : 506",
                   style: GoogleFonts.ibarraRealNova(
-                      fontWeight: FontWeight.bold, fontSize: 23),
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               const SizedBox(height: .5),
@@ -124,7 +97,7 @@ Widget patientDis() {
               icon: Icon(
                 Icons.delete,
                 color: theme,
-                size: 33,
+                size: 30,
               )),
           const SizedBox(width: 5,)
         ],

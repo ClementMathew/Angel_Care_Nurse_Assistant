@@ -55,18 +55,18 @@ class _MyDropDownState extends State<MyDropDownColor> {
           fillColor: background,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: null,
-          labelStyle: TextStyle(fontSize: 17, color: theme, letterSpacing: .2),
+          labelStyle: TextStyle(fontSize: 16, color: theme, letterSpacing: .2),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: background, width: 1)),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: background, width: 1)),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: background, width: 1)),
           disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: background, width: 1)),
           contentPadding: const EdgeInsets.all(3),
         ),
@@ -75,7 +75,7 @@ class _MyDropDownState extends State<MyDropDownColor> {
               hint: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(isGroups ? selectedGroup : selectedDept,
-                    style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: isFont ?FontWeight.bold: FontWeight.normal)),
+                    style: TextStyle(color: Colors.black, fontSize: 14,fontWeight: isFont ?FontWeight.bold: FontWeight.normal)),
               ),
               borderRadius: BorderRadius.circular(20),
               autofocus: true,
