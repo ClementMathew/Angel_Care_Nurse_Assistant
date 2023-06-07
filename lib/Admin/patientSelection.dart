@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nurse_assistant/Admin/patientToNurse.dart';
-import 'package:nurse_assistant/Resusables/buttons.dart';
+import 'package:nurse_assistant/Reusables/buttons.dart';
 
 import '../Colors/Colors.dart';
 import '../Nurse/pharmacyPage.dart';

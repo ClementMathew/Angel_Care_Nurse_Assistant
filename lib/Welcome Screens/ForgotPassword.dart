@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 
-import '../Resusables/buttons.dart';
-import '../Resusables/textFields.dart';
+import '../Reusables/buttons.dart';
+import '../Reusables/textFields.dart';
 import 'WelcomePage.dart';
 
 class ForgotPassword extends StatefulWidget {

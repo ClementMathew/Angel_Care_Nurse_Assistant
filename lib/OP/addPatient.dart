@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nurse_assistant/Resusables/buttons.dart';
-import 'package:nurse_assistant/Resusables/datePickerColor.dart';
+import 'package:nurse_assistant/Reusables/buttons.dart';
+import 'package:nurse_assistant/Reusables/datePickerColor.dart';
 
 import '../Colors/Colors.dart';
-import '../Resusables/textFieldColor.dart';
+import '../Reusables/textFieldColor.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
 class AddPatientPage extends StatefulWidget {

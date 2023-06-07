@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nurse_assistant/Resusables/medicalRecordButtons.dart';
+import 'package:nurse_assistant/Reusables/medicalRecordButtons.dart';
 
 import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';

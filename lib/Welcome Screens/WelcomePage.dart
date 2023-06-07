@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/Welcome Screens/LoginPage.dart';
 import 'package:nurse_assistant/Welcome%20Screens/RegisterPage.dart';
-import '../Resusables/buttons.dart';
+import '../Reusables/buttons.dart';
 import 'OTPPage.dart';
 
 var size, height, width;

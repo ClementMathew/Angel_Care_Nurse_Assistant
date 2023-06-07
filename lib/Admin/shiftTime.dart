@@ -6,17 +6,14 @@ import '../Colors/Colors.dart';
 import '../Nurse/pharmacyPage.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
-String? gender;
-
-class PatientToNursePage extends StatefulWidget {
-  const PatientToNursePage({Key? key}) : super(key: key);
+class ShiftTimePage extends StatefulWidget {
+  const ShiftTimePage({Key? key}) : super(key: key);
 
   @override
-  State<PatientToNursePage> createState() => _PatientToNursePageState();
+  State<ShiftTimePage> createState() => _ShiftTimePageState();
 }
 
-class _PatientToNursePageState extends State<PatientToNursePage> {
-
+class _ShiftTimePageState extends State<ShiftTimePage> {
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -27,13 +24,25 @@ class _PatientToNursePageState extends State<PatientToNursePage> {
         toolbarHeight: height * .085,
         backgroundColor: theme,
         title: const Text(
-          'Nurses List',
+          'Morning',
           style: TextStyle(
             fontSize: 21,
             fontWeight: FontWeight.bold,
           ),
         ),
         centerTitle: true,
+        actions: [
+          CircleAvatar(
+            radius: height * .018,
+            backgroundColor: Colors.white,
+            child: Text(
+              "2",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: 18, color: theme),
+            ),
+          ),
+          const SizedBox(width: 20)
+        ],
       ),
       body: Center(
         child: Column(
@@ -49,13 +58,21 @@ class _PatientToNursePageState extends State<PatientToNursePage> {
                     SizedBox(
                       height: height * .008,
                     ),
-                    const nurseSelect(val: 'male'),
-                    const nurseSelect(val: 'female'),
-                    const SizedBox(height: 10,)
+                    const nurseShiftSelect(),
+                    const nurseShiftSelect(),
+                    const SizedBox(
+                      height: 10,
+                    )
                   ],
                 ),
               ),
-            ),const SizedBox(height: 15,),longButton("Assign", (){})
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            longButton("Confirm", () {
+
+            })
           ],
         ),
       ),
@@ -63,15 +80,16 @@ class _PatientToNursePageState extends State<PatientToNursePage> {
   }
 }
 
-class nurseSelect extends StatefulWidget {
-  final String val;
-  const nurseSelect({Key? key, required this.val}) : super(key: key);
+class nurseShiftSelect extends StatefulWidget {
+  const nurseShiftSelect({Key? key}) : super(key: key);
 
   @override
-  State<nurseSelect> createState() => _nurseSelectState();
+  State<nurseShiftSelect> createState() => _nurseShiftSelectState();
 }
 
-class _nurseSelectState extends State<nurseSelect> {
+class _nurseShiftSelectState extends State<nurseShiftSelect> {
+
+  bool? isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +101,9 @@ class _nurseSelectState extends State<nurseSelect> {
         decoration: BoxDecoration(
             border: Border.all(width: 3, color: theme),
             color: Colors.white,
-            borderRadius: const BorderRadius.all(Radius.circular(18),
-            )
-        ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(18),
+            )),
         child: Row(
           children: [
             Column(
@@ -95,37 +113,43 @@ class _nurseSelectState extends State<nurseSelect> {
                 const SizedBox(height: .5),
                 Padding(
                   padding: const EdgeInsets.only(left: 22),
-                  child: Text("Clement Mathew",
+                  child: Text(
+                    "Clement Mathew",
                     style: GoogleFonts.ibarraRealNova(
-                        fontWeight: FontWeight.bold, fontSize: 20),),
+                        fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 22),
-                  child: Text("Id : 50689", style: GoogleFonts.ibarraRealNova(
-                      fontWeight: FontWeight.bold, fontSize: 20),),
+                  child: Text(
+                    "Id : 50654",
+                    style: GoogleFonts.ibarraRealNova(
+                        fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                 ),
                 const SizedBox(height: .5),
               ],
             ),
             const Spacer(),
-            Transform.scale(scale: 1.5,
-              child: Radio(
-                  fillColor: MaterialStateColor.resolveWith(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.selected)) {
-                        return theme;
-                      }
-                      return theme;
-                    },
-                  ),
-                  value: widget.val,
-                  groupValue: gender,
-                  onChanged: (value) {
-                    setState(() {
-                      gender = value;
-                    });
-                  }),
-            ),const SizedBox(width: 5,),
+            Transform.scale(
+              scale: 1.5,
+              child: Checkbox(
+                side: MaterialStateBorderSide.resolveWith(
+                        (states) => BorderSide(color: theme, width: 2)),
+                checkColor: Colors.white,
+                activeColor: theme,
+                value: isChecked,
+                shape: const CircleBorder(),
+                onChanged: (value) {
+                  setState(() {
+                    isChecked = value;
+                  });
+                },
+              ),
+            ),
+            const SizedBox(
+              width: 5,
+            ),
           ],
         ),
       ),

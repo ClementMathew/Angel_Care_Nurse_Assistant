@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Colors/Colors.dart';
-import '../Resusables/buttons.dart';
+import '../Reusables/buttons.dart';
 import 'ForgotPassword.dart';
 import 'WelcomePage.dart';
 

@@ -3,7 +3,7 @@ import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/OP/addPatient.dart';
 import 'package:nurse_assistant/OP/discharge.dart';
 import 'package:nurse_assistant/OP/patientEdit.dart';
-import 'package:nurse_assistant/Resusables/homeList.dart';
+import 'package:nurse_assistant/Reusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
 

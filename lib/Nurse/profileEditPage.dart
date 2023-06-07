@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nurse_assistant/Resusables/textFields.dart';
-
 import '../Colors/Colors.dart';
-import '../Resusables/buttons.dart';
-import '../Resusables/dropDownColor.dart';
-import '../Resusables/textFieldColor.dart';
+import '../Reusables/buttons.dart';
+import '../Reusables/dropDownColor.dart';
+import '../Reusables/textFieldColor.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
 class ProfileEditPage extends StatefulWidget {

@@ -51,17 +51,13 @@ Widget block(context,String content,page){
         shadowColor: Colors.black,
           elevation: 3,
           backgroundColor: theme,
-          fixedSize: Size(width*.85, 55),
+          fixedSize: Size(width*.8, 55),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           )),
-      child: Row(
-        children: [const SizedBox(width: 10,),
-          Text(
-            content,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-        ],
+      child: Text(
+        content,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
       ),
     ),
   );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../Resusables/textFields.dart';
+import '../Reusables/textFields.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
 class CreateQRPage extends StatefulWidget {

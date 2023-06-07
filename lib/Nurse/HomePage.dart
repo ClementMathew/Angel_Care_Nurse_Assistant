@@ -4,7 +4,7 @@ import 'package:nurse_assistant/Nurse/assignedPatient.dart';
 import 'package:nurse_assistant/Nurse/notificationsPage.dart';
 import 'package:nurse_assistant/Nurse/pharmacyPage.dart';
 import 'package:nurse_assistant/Nurse/profilePage.dart';
-import 'package:nurse_assistant/Resusables/homeList.dart';
+import 'package:nurse_assistant/Reusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
 import 'PatientPage.dart';

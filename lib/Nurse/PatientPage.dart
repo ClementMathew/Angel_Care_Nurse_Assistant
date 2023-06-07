@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/Nurse/SymptomsPage.dart';
-import 'package:nurse_assistant/Resusables/addButton.dart';
-import 'package:nurse_assistant/Resusables/buttons.dart';
+import 'package:nurse_assistant/Reusables/addButton.dart';
+import 'package:nurse_assistant/Reusables/buttons.dart';
 import 'package:nurse_assistant/Welcome%20Screens/WelcomePage.dart';
 
 import 'MediactionsPage.dart';

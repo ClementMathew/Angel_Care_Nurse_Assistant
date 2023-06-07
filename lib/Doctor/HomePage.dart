@@ -4,7 +4,7 @@ import 'package:nurse_assistant/Doctor/Casuality.dart';
 import 'package:nurse_assistant/Doctor/OT.dart';
 import 'package:nurse_assistant/Doctor/generalWard.dart';
 import 'package:nurse_assistant/Nurse/PatientPage.dart';
-import 'package:nurse_assistant/Resusables/homeList.dart';
+import 'package:nurse_assistant/Reusables/homeList.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
 import 'ICU.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nurse_assistant/Resusables/arrowButton.dart';
+import 'package:nurse_assistant/Reusables/arrowButton.dart';
 
 import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../Colors/Colors.dart';
-import '../Resusables/buttons.dart';
-import '../Resusables/dropDown.dart';
-import '../Resusables/textFields.dart';
+import '../Reusables/buttons.dart';
+import '../Reusables/dropDown.dart';
+import '../Reusables/textFields.dart';
 import 'WelcomePage.dart';
 
 String selectedGroup = "Blood Group";
