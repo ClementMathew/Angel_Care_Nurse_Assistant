@@ -5,6 +5,7 @@ import 'package:nurse_assistant/Nurse/notificationsPage.dart';
 import 'package:nurse_assistant/Nurse/pharmacyPage.dart';
 import 'package:nurse_assistant/Nurse/profilePage.dart';
 import 'package:nurse_assistant/Reusables/homeList.dart';
+import 'package:nurse_assistant/Reusables/popUpMenu.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
 import 'PatientPage.dart';
@@ -19,6 +20,11 @@ class NurseHome extends StatefulWidget {
 class _NurseHomeState extends State<NurseHome> {
   @override
   Widget build(BuildContext context) {
+
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
+
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -50,14 +56,7 @@ class _NurseHomeState extends State<NurseHome> {
                   const SizedBox(
                     width: 10,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: Colors.white,
-                      size: 26,
-                    ),
-                  )
+                  const PopUpMenu()
                 ]),
             body: Stack(children: [
               Container(

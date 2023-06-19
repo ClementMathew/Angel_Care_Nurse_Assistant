@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "363004740014",
+    "project_id": "angel-care-7b2b2",
+    "storage_bucket": "angel-care-7b2b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363004740014:android:5d82e43dbc21e730c4483f",
+        "android_client_info": {
+          "package_name": "com.example.nurse_assistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363004740014-ngp10ij5fbhjg30us9gjua3ou2cmhped.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwUbOGVYwmuPqQgP1LCgP_GWik-BtVuQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363004740014-ngp10ij5fbhjg30us9gjua3ou2cmhped.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

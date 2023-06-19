@@ -6,6 +6,7 @@ import 'package:nurse_assistant/Doctor/generalWard.dart';
 import 'package:nurse_assistant/Nurse/PatientPage.dart';
 import 'package:nurse_assistant/Reusables/homeList.dart';
 
+import '../Reusables/popUpMenu.dart';
 import '../Welcome Screens/WelcomePage.dart';
 import 'ICU.dart';
 
@@ -19,6 +20,11 @@ class DoctorHome extends StatefulWidget {
 class _DoctorHomeState extends State<DoctorHome> {
   @override
   Widget build(BuildContext context) {
+
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
+
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -50,14 +56,7 @@ class _DoctorHomeState extends State<DoctorHome> {
                   const SizedBox(
                     width: 1,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: Colors.white,
-                      size: 26,
-                    ),
-                  )
+                  const PopUpMenu()
                 ]),
             body: SingleChildScrollView(
               child: Stack(children: [

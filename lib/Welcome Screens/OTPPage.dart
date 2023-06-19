@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../Colors/Colors.dart';
+import '../Provider/provider.dart';
 import '../Reusables/buttons.dart';
 import 'ForgotPassword.dart';
 import 'WelcomePage.dart';
@@ -12,13 +16,17 @@ class OTPPage extends StatefulWidget {
   State<OTPPage> createState() => _OTPPageState();
 }
 
+final CollectionReference user = FirebaseFirestore.instance.collection('Users');
+
 class _OTPPageState extends State<OTPPage> {
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   TextEditingController phoneController = TextEditingController();
   TextEditingController otpController = TextEditingController();
 
   bool otpVisibility = false;
   String verificationID = "";
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -89,13 +97,23 @@ class _OTPPageState extends State<OTPPage> {
                   SizedBox(
                     height: height * .07,
                   ),
-                  filledButton(
+                  loading
+                      ? CircularProgressIndicator(
+                    color: theme,
+                  )
+                      : filledButton(
                     context,
                     otpVisibility ? "Confirm" : "Send OTP",
                     false,
-                    null, (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPassword(),));
-                  }),
+                    null, ()async{setState(() {
+                    loading = true;
+                  });
+
+                  if (otpVisibility) {
+                    verifyOTP();
+                  } else {
+                    loginWithPhone();
+                  }}),
                   SizedBox(
                     height: height*.06,
                   )
@@ -103,5 +121,74 @@ class _OTPPageState extends State<OTPPage> {
           )
       ),
     );
+  }
+
+  void loginWithPhone() async {
+    var tagprovider = Provider.of<TagProvider>(context, listen: false);
+
+    QuerySnapshot snapshot = await user
+        .where('phone',
+        isEqualTo: int.parse(phoneController.text
+            .substring(phoneController.text.length - 10)))
+        .get();
+    if (snapshot != null) {
+      snapshot.docs.forEach((doc) async {
+        await tagprovider.giveUser(doc['email'], doc['password']);
+      });
+    } else {
+      print('Document does not exist');
+    }
+    await auth.verifyPhoneNumber(
+      phoneNumber: phoneController.text,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await auth.signInWithCredential(credential).then((value) {
+          print("You are logged in successfully by number");
+        });
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        const snackBar = SnackBar(content: Text("Invalid phone number"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        setState(() {
+          loading = false;
+        });
+        print("Failed");
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        const snackBar = SnackBar(content: Text("OTP Sent"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        otpVisibility = true;
+        verificationID = verificationId;
+        setState(() {
+          loading = false;
+        });
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        // const snackBar = SnackBar(content: Text("Resend OTP"));
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      },
+    );
+  }
+
+  void verifyOTP() async {
+    var tagprovider = Provider.of<TagProvider>(context, listen: false);
+
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationID, smsCode: otpController.text);
+
+    await auth.signInWithCredential(credential).then((value) {
+      auth.signInWithEmailAndPassword(
+          email: tagprovider.getEmail, password: tagprovider.getPassword);
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ForgotPassword(),
+          ));
+    }).onError((error, stackTrace) {
+      const snackBar = SnackBar(content: Text("Invalid OTP"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      setState(() {
+        loading = false;
+      });
+    });
   }
 }

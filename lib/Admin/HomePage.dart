@@ -9,6 +9,7 @@ import 'package:nurse_assistant/Admin/shiftAssignment.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/QR_Code/CreateQRPage.dart';
 import 'package:nurse_assistant/Reusables/homeList.dart';
+import '../Reusables/popUpMenu.dart';
 import '../Welcome Screens/WelcomePage.dart';
 import 'doctorsList.dart';
 
@@ -22,6 +23,11 @@ class AdminHome extends StatefulWidget {
 class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
+
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
+
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -42,15 +48,8 @@ class _AdminHomeState extends State<AdminHome> {
                     size: 28,
                   ),
                 ),
-                actions: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: Colors.white,
-                      size: 26,
-                    ),
-                  ),const SizedBox(
+                actions: const [
+                  PopUpMenu(),SizedBox(
                     width: 5,
                   ),
                 ]),
