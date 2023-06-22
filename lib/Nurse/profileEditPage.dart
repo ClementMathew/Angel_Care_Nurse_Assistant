@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nurse_assistant/Nurse/profilePage.dart';
 import '../Colors/Colors.dart';
 import '../Reusables/buttons.dart';
 import '../Reusables/dropDownColor.dart';
 import '../Reusables/textFieldColor.dart';
+import '../Welcome Screens/OTPPage.dart';
+import '../Welcome Screens/RegisterPage.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
 class ProfileEditPage extends StatefulWidget {
@@ -25,19 +28,37 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
     'AB Negative',
   ];
 
-  List<String> departments = [
-    'Nurse',
-    'Nurse Superintendent',
-    'Doctor',
-    'Admission OP',
-  ];
+  void updateUser(docId) {
+    final data = {
+      'name': nameTextController.text,
+      'phone': phoneTextController.text,
+      'staff-id': staffIdTextController.text,
+      'blood-grp': selectedGroup,
+    };
+    user.doc(docId).update(data);
+  }
+
+  bool loading = false;
 
   TextEditingController nameTextController = TextEditingController();
   TextEditingController phoneTextController = TextEditingController();
   TextEditingController staffIdTextController = TextEditingController();
 
   @override
+  void initState() {
+    selectedGroup = editData['blood-grp'];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    final args = ModalRoute.of(context)?.settings.arguments as Map;
+    nameTextController.text = args['name'];
+    phoneTextController.text = args['phone'];
+    staffIdTextController.text = args['staff-id'];
+    final docId = args['id'];
+
     return Scaffold(
         backgroundColor: secondary,
         appBar: AppBar(
@@ -81,11 +102,17 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     SizedBox(height: height * .008),
                     MyDropDownColor(myList: groups,isEdit: true,),
                     SizedBox(height: height * .03),
-                    MyDropDownColor(myList: departments,isEdit: true,),
-                    SizedBox(height: height * .03),
                     textFieldColor(false, false, null, "Staff Id Number", staffIdTextController),
-                    SizedBox(height: height * .03),
-                    longButton("Confirm",(){})
+                    SizedBox(height: height * .1),
+                    loading ? CircularProgressIndicator(
+                      color: theme,
+                    ):longButton("Confirm",()async{
+                      setState(() {
+                        loading = true;
+                      });
+                      updateUser(docId);
+                      Navigator.pop(context);
+                    })
           ])),
         ));
   }

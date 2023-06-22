@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nurse_assistant/Nurse/profileEditPage.dart';
 
 import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';
+
+Map editData = {};
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -15,6 +18,11 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    CollectionReference user = FirebaseFirestore.instance.collection('Users');
+    DocumentReference docRef = user.doc(auth.currentUser?.uid);
+
     return Scaffold(
         backgroundColor: secondary,
         appBar: AppBar(
@@ -31,10 +39,12 @@ class _ProfilePageState extends State<ProfilePage> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfileEditPage()));
+                  Navigator.pushNamed(context, '/edit', arguments: {
+                    'name': editData['name'],
+                    'phone' : editData['phone'],
+                    'staff-id': editData['staff-id'],
+                    'id':editData['id']
+                  });
                 },
                 icon: const Icon(Icons.edit)),
             const SizedBox(
@@ -66,10 +76,24 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(
                 height: 23,
               ),
-              Text(
-                "Clement Mathew",
-                style:
-                    GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 25),
+              StreamBuilder<DocumentSnapshot>(
+                stream: docRef.snapshots(),
+                builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text('Error...');
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text('Loading...');
+                  }
+                  if (!snapshot.hasData) {
+                    return const Text('No Data found');
+                  }
+                  DocumentSnapshot docSnapshot = snapshot.data!;
+                  String fieldData = (docSnapshot.get('name')).toString();
+                  editData['name'] = fieldData;
+
+                  return Text(fieldData,style: GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 26));
+                },
               ),
               SizedBox(
                 height: height * .05,
@@ -93,11 +117,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     const SizedBox(
                       height: .1,
                     ),
-                    profileText("Staff Id : ", "22765", false),
-                    profileText("Phone : ", "8156819141", false),
-                    profileText("Email : ", "clementmathew924@gmail.com", false),
-                    profileText("Blood Group : ", "O +ve", true),
-                    profileText("Working as : ", "Nurse", true),
+                    profileText("Staff Id : ", "staff-id", false),
+                    profileText("Phone : ", "phone", false),
+                    profileText("Email : ", "email", false),
+                    profileText("Blood Group : ", "blood-grp", true),
+                    profileText("Working as : ", "working-as", true),
                     const SizedBox(
                       height: .01,
                     ),
@@ -111,6 +135,11 @@ class _ProfilePageState extends State<ProfilePage> {
 }
 
 Widget profileText(detail, content, bool isShort) {
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  CollectionReference user = FirebaseFirestore.instance.collection('Users');
+  DocumentReference docRef = user.doc(auth.currentUser?.uid);
+
   return Padding(
     padding: const EdgeInsets.only(left: 35),
     child: Row(
@@ -124,11 +153,27 @@ Widget profileText(detail, content, bool isShort) {
             )),
         SizedBox(
             width: isShort ? width * .35 : width * .46,
-            child: Text(
-              content,
-              style: GoogleFonts.roboto(
-                  fontSize: 20, fontWeight: FontWeight.bold, height: 1.6),
-            )),
+            child: StreamBuilder<DocumentSnapshot>(
+          stream: docRef.snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return const Text('Error...');
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text('Loading...');
+            }
+            if (!snapshot.hasData) {
+              return const Text('No Data found');
+            }
+            DocumentSnapshot docSnapshot = snapshot.data!;
+            String fieldData = (docSnapshot.get(content)).toString();
+            editData[content] = fieldData;
+            editData['id']=docSnapshot.id;
+
+            return Text(fieldData,style: GoogleFonts.roboto(
+                fontSize: 19, fontWeight: FontWeight.bold, height: 1.6));
+          },
+        )),
       ],
     ),
   );

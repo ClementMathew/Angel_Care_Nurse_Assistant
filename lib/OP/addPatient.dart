@@ -17,6 +17,8 @@ class AddPatientPage extends StatefulWidget {
 
 class _AddPatientPageState extends State<AddPatientPage> {
 
+  bool loading = false;
+
   final CollectionReference user =
   FirebaseFirestore.instance.collection('Patients');
 
@@ -98,8 +100,14 @@ class _AddPatientPageState extends State<AddPatientPage> {
                 SizedBox(height: height * .03),
                 textFieldColor(false, false,null, "Bed Number", bedTextController),
                 SizedBox(height: height * .03),
-                longButton("Confirm", (){
+                loading ? CircularProgressIndicator(
+                  color: theme,
+                ):longButton("Confirm", (){
+                  setState(() {
+                    loading = true;
+                  });
                     addPatient();
+                  Navigator.pop(context);
                 }),
                 SizedBox(height: height * .035),
               ])),
