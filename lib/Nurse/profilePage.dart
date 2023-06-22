@@ -42,68 +42,70 @@ class _ProfilePageState extends State<ProfilePage> {
             )
           ],
         ),
-        body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            SizedBox(
-              height: height * .04,
-            ),
-            CircleAvatar(
-              radius: width * .26,
-              backgroundColor: theme,
-              child: ClipOval(
-                child: Align(
-                  widthFactor: .96,
-                  child: CircleAvatar(
-                    radius: width * .245,
-                    backgroundColor: background,
-                    child: Icon(Icons.add_a_photo,
-                        size: width * .18, color: theme),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              SizedBox(
+                height: height * .04,
+              ),
+              CircleAvatar(
+                radius: width * .26,
+                backgroundColor: theme,
+                child: ClipOval(
+                  child: Align(
+                    widthFactor: .96,
+                    child: CircleAvatar(
+                      radius: width * .245,
+                      backgroundColor: background,
+                      child: Icon(Icons.add_a_photo,
+                          size: width * .18, color: theme),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 23,
-            ),
-            Text(
-              "Clement Mathew",
-              style:
-                  GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
-            SizedBox(
-              height: height * .05,
-            ),
-            Container(
-              height: height * .45,
-              width: width * .88,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border(
-                      bottom: BorderSide(color: theme, width: 2),
-                      top: BorderSide(color: theme, width: 7),
-                      left: BorderSide(color: theme, width: 5),
-                      right: BorderSide(color: theme, width: 5))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: .1,
-                  ),
-                  profileText("Staff Id : ", "22765", false),
-                  profileText("Phone : ", "8156819141", false),
-                  profileText("Email : ", "clementmathew924@gmail.com", false),
-                  profileText("Blood Group : ", "O +ve", true),
-                  profileText("Working as : ", "Nurse", true),
-                  const SizedBox(
-                    height: .01,
-                  ),
-                ],
+              const SizedBox(
+                height: 23,
               ),
-            )
-          ]),
+              Text(
+                "Clement Mathew",
+                style:
+                    GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+              SizedBox(
+                height: height * .05,
+              ),
+              Container(
+                height: height * .45,
+                width: width * .88,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border(
+                        bottom: BorderSide(color: theme, width: 2),
+                        top: BorderSide(color: theme, width: 7),
+                        left: BorderSide(color: theme, width: 5),
+                        right: BorderSide(color: theme, width: 5))),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: .1,
+                    ),
+                    profileText("Staff Id : ", "22765", false),
+                    profileText("Phone : ", "8156819141", false),
+                    profileText("Email : ", "clementmathew924@gmail.com", false),
+                    profileText("Blood Group : ", "O +ve", true),
+                    profileText("Working as : ", "Nurse", true),
+                    const SizedBox(
+                      height: .01,
+                    ),
+                  ],
+                ),
+              )
+            ]),
+          ),
         ));
   }
 }

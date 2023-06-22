@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Admin/attendersList.dart';
 import 'package:nurse_assistant/Admin/nursesList.dart';
@@ -9,6 +11,7 @@ import 'package:nurse_assistant/Admin/shiftAssignment.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/QR_Code/CreateQRPage.dart';
 import 'package:nurse_assistant/Reusables/homeList.dart';
+import '../Nurse/profilePage.dart';
 import '../Reusables/popUpMenu.dart';
 import '../Welcome Screens/WelcomePage.dart';
 import 'doctorsList.dart';
@@ -21,6 +24,12 @@ class AdminHome extends StatefulWidget {
 }
 
 class _AdminHomeState extends State<AdminHome> {
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final CollectionReference user =
+  FirebaseFirestore.instance.collection('Users');
+  late DocumentReference reference = user.doc(auth.currentUser?.uid);
+
   @override
   Widget build(BuildContext context) {
 
@@ -33,12 +42,39 @@ class _AdminHomeState extends State<AdminHome> {
             appBar: AppBar(
                 backgroundColor: theme,
                 toolbarHeight: height * .085,
-                title: const Text(
-                  'Name',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                title: StreamBuilder<DocumentSnapshot>(
+                  stream: reference.snapshots(),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return const Text("Angel Care",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ));
+                    }
+                    if (snapshot.hasData) {
+                      DocumentSnapshot docSnapshot = snapshot.data!;
+                      String fieldData = (docSnapshot.get('name')).toString();
+                      return InkWell(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfilePage(),
+                              ));
+                        },
+                        child: Text(
+                          fieldData,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    }
+                    return const Text("Loading...");
+                  },
                 ),
                 leading: IconButton(
                   onPressed: () {},

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/Doctor/Casuality.dart';
@@ -6,6 +8,7 @@ import 'package:nurse_assistant/Doctor/generalWard.dart';
 import 'package:nurse_assistant/Nurse/PatientPage.dart';
 import 'package:nurse_assistant/Reusables/homeList.dart';
 
+import '../Nurse/profilePage.dart';
 import '../Reusables/popUpMenu.dart';
 import '../Welcome Screens/WelcomePage.dart';
 import 'ICU.dart';
@@ -18,6 +21,12 @@ class DoctorHome extends StatefulWidget {
 }
 
 class _DoctorHomeState extends State<DoctorHome> {
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final CollectionReference user =
+  FirebaseFirestore.instance.collection('Users');
+  late DocumentReference reference = user.doc(auth.currentUser?.uid);
+
   @override
   Widget build(BuildContext context) {
 
@@ -30,12 +39,39 @@ class _DoctorHomeState extends State<DoctorHome> {
             appBar: AppBar(
                 backgroundColor: theme,
                 toolbarHeight: height * .085,
-                title: const Text(
-                  'Name',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                title: StreamBuilder<DocumentSnapshot>(
+                  stream: reference.snapshots(),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return const Text("Angel Care",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ));
+                    }
+                    if (snapshot.hasData) {
+                      DocumentSnapshot docSnapshot = snapshot.data!;
+                      String fieldData = (docSnapshot.get('name')).toString();
+                      return InkWell(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfilePage(),
+                              ));
+                        },
+                        child: Text(
+                          fieldData,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    }
+                    return const Text("Loading...");
+                  },
                 ),
                 leading: IconButton(
                   onPressed: () {},

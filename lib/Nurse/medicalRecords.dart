@@ -29,14 +29,16 @@ class _MedicalRecordsPageState extends State<MedicalRecordsPage> {
                 ),
               ),
             ),
-            body: Center(
-              child: Column(
-                children: [const SizedBox(height: 10,),
-                  MRButton("MRI Scan Report"),
-                  MRButton("Blood Test Report"),
-                  MRButton("CT Scan Report"),
-                  MRButton("X-Ray Report"),
-                ],
+            body: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: [const SizedBox(height: 10,),
+                    MRButton("MRI Scan Report"),
+                    MRButton("Blood Test Report"),
+                    MRButton("CT Scan Report"),
+                    MRButton("X-Ray Report"),
+                  ],
+                ),
               ),
             )));
   }

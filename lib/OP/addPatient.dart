@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Reusables/buttons.dart';
 import 'package:nurse_assistant/Reusables/datePickerColor.dart';
@@ -15,11 +17,44 @@ class AddPatientPage extends StatefulWidget {
 
 class _AddPatientPageState extends State<AddPatientPage> {
 
+  final CollectionReference user =
+  FirebaseFirestore.instance.collection('Patients');
+
   TextEditingController nameTextController = TextEditingController();
   TextEditingController ageTextController = TextEditingController();
   TextEditingController phoneTextController = TextEditingController();
   TextEditingController diseaseTextController = TextEditingController();
+  TextEditingController bedTextController = TextEditingController();
   TextEditingController admissionDate = TextEditingController();
+
+  Future<void> updateUserData(
+      String name,
+      String age,
+      String admission,
+      int phone,
+      String disease,
+      String bed,
+      ) async {
+    return await user.doc(name+age).set({
+      'name': name,
+      'age': age,
+      'admission': admission,
+      'phone': phone,
+      'disease': disease,
+      'bed': bed,
+    });
+  }
+
+  void addPatient() {
+    updateUserData(
+        nameTextController.text,
+        ageTextController.text,
+        admissionDate.text,
+        int.parse(phoneTextController.text),
+        diseaseTextController.text,
+        bedTextController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +96,12 @@ class _AddPatientPageState extends State<AddPatientPage> {
                 SizedBox(height: height * .008),
                 textFieldColor(false, false,null, "Disease", diseaseTextController),
                 SizedBox(height: height * .03),
-                longButton("Confirm", (){})
+                textFieldColor(false, false,null, "Bed Number", bedTextController),
+                SizedBox(height: height * .03),
+                longButton("Confirm", (){
+                    addPatient();
+                }),
+                SizedBox(height: height * .035),
               ])),
         )
     );

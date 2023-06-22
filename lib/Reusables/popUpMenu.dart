@@ -1,8 +1,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
+import 'AboutPage.dart';
 
 
 class PopUpMenu extends StatefulWidget {
@@ -44,7 +46,7 @@ class _PopUpMenuState extends State<PopUpMenu> {
         ),
         PopupMenuItem(
           value: (){
-            // _launchURL();
+            _launchURL();
           },
           child: const Row(
             children: [Icon(Icons.cached,color: Colors.black,),
@@ -55,7 +57,7 @@ class _PopUpMenuState extends State<PopUpMenu> {
         ),
         PopupMenuItem(
           value: (){
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutPage(),));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutPage(),));
           },
           child: const Row(
             children: [Icon(Icons.info_outline,color: Colors.black,),
@@ -69,14 +71,14 @@ class _PopUpMenuState extends State<PopUpMenu> {
   }
 }
 
-// _launchURL() async {
-//   const url =
-//       'https://drive.google.com/drive/folders/1hFXYJVqw4PHz1njvuRjusA3BEJfLVBV1?usp=sharing';
-//
-//   final uri = Uri.parse(url);
-//   if (await canLaunchUrl(uri,)) {
-//     await launchUrl(uri,mode: LaunchMode.externalApplication);
-//   } else {
-//     throw 'Could not launch $url';
-//   }
-// }
+_launchURL() async {
+  const url =
+      'https://drive.google.com/drive/folders/1Y1PH20VT-gAhIZvG9Jg6P8eYatGbMORv?usp=sharing';
+
+  final uri = Uri.parse(url);
+  if (await canLaunchUrl(uri,)) {
+    await launchUrl(uri,mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Could not launch $url';
+  }
+}

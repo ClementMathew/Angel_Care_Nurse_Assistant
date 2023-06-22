@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
+import 'package:nurse_assistant/Nurse/PatientPage.dart';
 import 'package:nurse_assistant/Welcome%20Screens/WelcomePage.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -120,6 +121,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
     controller.scannedDataStream.listen((barcode) {
       setState(() {
         this.barcode = barcode;
+        Navigator.push(context, MaterialPageRoute(builder: (context) => PatientPage(),));
       });
     });
   }
