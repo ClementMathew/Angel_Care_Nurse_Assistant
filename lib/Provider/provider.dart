@@ -3,11 +3,20 @@ import 'package:intl/intl.dart';
 
 String theEmail = "";
 String thePassword = "";
+String theName = "";
+String theAge = "";
+String theDate = "";
+String theDisease = "";
+String thePhone = "";
 
 class TagProvider with ChangeNotifier {
   String get getEmail => theEmail;
-
   String get getPassword => thePassword;
+  String get getName => theName;
+  String get getAge => theAge;
+  String get getDate => theDate;
+  String get getDisease => theDisease;
+  String get getPhone => thePhone;
 
   void changeDate(BuildContext context, final controller) async {
     DateTime? pickedDate = await showDatePicker(
@@ -37,5 +46,13 @@ class TagProvider with ChangeNotifier {
   giveUser(email, password) {
     theEmail = email;
     thePassword = password;
+  }
+
+  giveData(name,age,date,disease,phone) {
+    theName = name;
+    theAge = age;
+    theDate = date;
+    theDisease = disease;
+    thePhone = phone;
   }
 }

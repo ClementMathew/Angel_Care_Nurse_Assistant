@@ -117,7 +117,7 @@ class _AboutPageState extends State<AboutPage> {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 10, left: 20),
+            padding: EdgeInsets.only(top: 10, left: 20,right: 20),
             child: Text(
               'Developed and maintained by Clement Mathew, Ashin Johnson, Ebin Shaji, Adithya UK.',
               style: TextStyle(

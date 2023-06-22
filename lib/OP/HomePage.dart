@@ -37,42 +37,48 @@ class _OPHomeState extends State<OPHome> {
             appBar: AppBar(
                 backgroundColor: theme,
                 toolbarHeight: height * .085,
-                title: StreamBuilder<DocumentSnapshot>(
-                  stream: reference.snapshots(),
-                  builder:
-                      (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return const Text("Angel Care",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ));
-                    }
-                    if (snapshot.hasData) {
-                      DocumentSnapshot docSnapshot = snapshot.data!;
-                      String fieldData = (docSnapshot.get('name')).toString();
-                      return InkWell(
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ProfilePage(),
-                              ));
-                        },
-                        child: Text(
+                title: InkWell(
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ));
+                  },
+                  child: StreamBuilder<DocumentSnapshot>(
+                    stream: reference.snapshots(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return const Text("Angel Care",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ));
+                      }
+                      if (snapshot.hasData) {
+                        DocumentSnapshot docSnapshot = snapshot.data!;
+                        String fieldData = (docSnapshot.get('name')).toString();
+                        return Text(
                           fieldData,
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                      );
-                    }
-                    return const Text("Loading...");
-                  },
+                        );
+                      }
+                      return const Text("Loading...");
+                    },
+                  ),
                 ),
                 leading: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ));
+                  },
                   icon: const Icon(
                     Icons.account_circle_rounded,
                     color: Colors.white,

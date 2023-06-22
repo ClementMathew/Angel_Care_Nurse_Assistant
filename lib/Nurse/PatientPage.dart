@@ -10,7 +10,8 @@ import 'MedicationsPage.dart';
 import 'medicalRecords.dart';
 
 class PatientPage extends StatefulWidget {
-  const PatientPage({Key? key}) : super(key: key);
+  final name,age,date,phone,disease;
+  const PatientPage({Key? key, this.name, this.age, this.date, this.phone, this.disease}) : super(key: key);
 
   @override
   State<PatientPage> createState() => _PatientPageState();
@@ -94,7 +95,7 @@ class _PatientPageState extends State<PatientPage> {
                         height: height * .13,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 5),
-                          child: Text("Clement Mathew",
+                          child: Text(widget.name,
                               style: GoogleFonts.roboto(
                                 height: 1.3,
                                 color: Colors.black,
@@ -108,7 +109,7 @@ class _PatientPageState extends State<PatientPage> {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10))),
                         label: Text(
-                          "Age : 21",
+                          "Age : ${widget.age}",
                           style: GoogleFonts.ibarraRealNova(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
@@ -140,7 +141,7 @@ class _PatientPageState extends State<PatientPage> {
                               ),
                             ),
                             Text(
-                              " 22-05-2001",
+                              " ${widget.date}",
                               style: GoogleFonts.ibarraRealNova(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -162,7 +163,7 @@ class _PatientPageState extends State<PatientPage> {
                             ),
                           ),
                           Text(
-                            " +918156819141",
+                            " ${widget.phone}",
                             style: GoogleFonts.ibarraRealNova(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
@@ -194,7 +195,7 @@ class _PatientPageState extends State<PatientPage> {
                               ),
                             ),
                             Text(
-                              " Fever",
+                              " ${widget.disease}",
                               style: GoogleFonts.ibarraRealNova(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 23,

@@ -1,10 +1,14 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
-import 'package:nurse_assistant/Nurse/PatientPage.dart';
 import 'package:nurse_assistant/Welcome%20Screens/WelcomePage.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../Nurse/PatientPage.dart';
+import '../Provider/provider.dart';
 
 class ScanQRPage extends StatefulWidget {
   const ScanQRPage({Key? key}) : super(key: key);
@@ -14,6 +18,9 @@ class ScanQRPage extends StatefulWidget {
 }
 
 class _ScanQRPageState extends State<ScanQRPage> {
+  CollectionReference patient =
+      FirebaseFirestore.instance.collection('Patients');
+
   final qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
   Barcode? barcode;
@@ -36,6 +43,8 @@ class _ScanQRPageState extends State<ScanQRPage> {
 
   @override
   Widget build(BuildContext context) {
+    var tagprovider = Provider.of<TagProvider>(context, listen: false);
+
     return SafeArea(
         child: Scaffold(
       body: Stack(
@@ -98,7 +107,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8), color: Colors.white),
       child: Text(
-        barcode != null ? 'Result:${barcode!.code}' : 'Scan a code!',
+        barcode != null ? 'Done !' : 'Scan a code !',
         maxLines: 3,
       ));
 
@@ -114,6 +123,8 @@ class _ScanQRPageState extends State<ScanQRPage> {
       );
 
   void onQRViewCreated(QRViewController controller) {
+    var tagprovider = Provider.of<TagProvider>(context, listen: false);
+
     setState(() {
       this.controller = controller;
     });
@@ -121,8 +132,35 @@ class _ScanQRPageState extends State<ScanQRPage> {
     controller.scannedDataStream.listen((barcode) {
       setState(() {
         this.barcode = barcode;
-        Navigator.push(context, MaterialPageRoute(builder: (context) => PatientPage(),));
+        callData();
+        Future.delayed(const Duration(milliseconds: 200), () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PatientPage(
+                    name: tagprovider.getName,
+                    age: tagprovider.getAge,
+                    date: tagprovider.getDate,
+                    disease: tagprovider.getDisease,
+                    phone: tagprovider.getPhone),
+              ));
+        });
       });
     });
+  }
+
+  callData() async {
+    var tagprovider = Provider.of<TagProvider>(context, listen: false);
+
+    QuerySnapshot snapshot =
+        await patient.where('bed', isEqualTo: barcode!.code).get();
+    if (snapshot != null) {
+      snapshot.docs.forEach((doc) async {
+        await tagprovider.giveData(
+            doc['name'], doc['age'], doc['admission'], doc['disease'], doc['phone'].toString());
+      });
+    } else {
+      print('Document does not exist');
+    }
   }
 }
