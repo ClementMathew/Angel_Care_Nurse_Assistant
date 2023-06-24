@@ -14,6 +14,11 @@ class ShiftTimePage extends StatefulWidget {
 }
 
 class _ShiftTimePageState extends State<ShiftTimePage> {
+
+  changeSearch(value) {
+    setState(() {});
+  }
+
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -54,7 +59,35 @@ class _ShiftTimePageState extends State<ShiftTimePage> {
                     SizedBox(
                       height: height * .012,
                     ),
-                    mySearch(searchController),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
+                      child: SizedBox(
+                          height: height * .06,
+                          width: width * .89,
+                          child: SearchBar(
+                            onChanged: (value) {
+                              changeSearch(value);
+                            },
+                            controller: searchController,
+                            elevation: const MaterialStatePropertyAll(3),
+                            trailing: const [
+                              Padding(
+                                padding: EdgeInsets.only(top: 3, right: 7),
+                                child: Icon(
+                                  Icons.search,
+                                  color: Colors.black54,
+                                ),
+                              )
+                            ],
+                            padding: const MaterialStatePropertyAll(
+                                EdgeInsets.only(left: 15, right: 5, bottom: 2.3)),
+                            hintText: "Search",
+                            hintStyle: const MaterialStatePropertyAll(
+                                TextStyle(color: Colors.black, fontSize: 18)),
+                            textStyle: const MaterialStatePropertyAll(
+                                TextStyle(color: Colors.black, fontSize: 18)),
+                          )),
+                    ),
                     SizedBox(
                       height: height * .008,
                     ),

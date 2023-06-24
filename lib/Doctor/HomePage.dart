@@ -6,8 +6,10 @@ import 'package:nurse_assistant/Doctor/Casuality.dart';
 import 'package:nurse_assistant/Doctor/OT.dart';
 import 'package:nurse_assistant/Doctor/generalWard.dart';
 import 'package:nurse_assistant/Nurse/PatientPage.dart';
+import 'package:nurse_assistant/QR_Code/ScanQRPage.dart';
 import 'package:nurse_assistant/Reusables/homeList.dart';
 
+import '../Nurse/notificationsPage.dart';
 import '../Nurse/profilePage.dart';
 import '../Reusables/popUpMenu.dart';
 import '../Welcome Screens/WelcomePage.dart';
@@ -74,7 +76,7 @@ class _DoctorHomeState extends State<DoctorHome> {
                   },
                 ),
                 leading: IconButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));},
                   icon: const Icon(
                     Icons.account_circle_rounded,
                     color: Colors.white,
@@ -83,7 +85,9 @@ class _DoctorHomeState extends State<DoctorHome> {
                 ),
                 actions: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
+                      },
                       icon: const Icon(
                         Icons.notifications,
                         color: Colors.white,
@@ -136,7 +140,7 @@ class _DoctorHomeState extends State<DoctorHome> {
                           const SizedBox(
                             height: 10,
                           ),
-                          homeButton(context, "Scan QR Code", const PatientPage(),
+                          homeButton(context, "Scan QR Code", const ScanQRPage(),
                             'assets/icons/doctor/scanqr.png'),
                           myDivider(),
                           homeButton(context, "General Ward", const GeneralWardPage(),

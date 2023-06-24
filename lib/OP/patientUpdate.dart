@@ -1,21 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nurse_assistant/Reusables/buttons.dart';
 import 'package:nurse_assistant/Reusables/datePickerColor.dart';
-
 import '../Colors/Colors.dart';
 import '../Reusables/textFieldColor.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
-class AddPatientPage extends StatefulWidget {
-  const AddPatientPage({Key? key}) : super(key: key);
+class PatientUpdate extends StatefulWidget {
+  final name;
+  final age;
+  final date;
+  final phone;
+  final disease;
+  final bed;
+  final id;
+  const PatientUpdate({Key? key, this.name, this.date, this.age, this.phone, this.disease, this.bed, this.id}) : super(key: key);
 
   @override
-  State<AddPatientPage> createState() => _AddPatientPageState();
+  State<PatientUpdate> createState() => _PatientUpdateState();
 }
 
-class _AddPatientPageState extends State<AddPatientPage> {
+class _PatientUpdateState extends State<PatientUpdate> {
+
+  @override
+  void initState() {
+    admissionDate.text = widget.date;
+    super.initState();
+  }
 
   bool loading = false;
 
@@ -29,51 +40,43 @@ class _AddPatientPageState extends State<AddPatientPage> {
   TextEditingController bedTextController = TextEditingController();
   TextEditingController admissionDate = TextEditingController();
 
-  Future<void> updateUserData(
-      String name,
-      String age,
-      String admission,
-      int phone,
-      String disease,
-      String bed,
-      ) async {
-    return await user.doc(name+age).set({
-      'name': name,
-      'age': age,
-      'admission': admission,
-      'phone': phone,
-      'disease': disease,
-      'bed': bed,
-    });
-  }
-
-  void addPatient() {
-    updateUserData(
-        nameTextController.text,
-        ageTextController.text,
-        admissionDate.text,
-        int.parse(phoneTextController.text),
-        diseaseTextController.text,
-        bedTextController.text,
-    );
+  void updateUser(docId) {
+    final data = {
+      'name': nameTextController.text,
+      'age': ageTextController.text,
+      'admission': admissionDate.text,
+      'phone': phoneTextController.text,
+      'disease': diseaseTextController.text,
+      'bed': bedTextController.text,
+    };
+    user.doc(docId).update(data);
   }
 
   @override
   Widget build(BuildContext context) {
+
+    nameTextController.text = widget.name;
+    ageTextController.text = widget.age;
+    phoneTextController.text = widget.phone;
+    diseaseTextController.text = widget.disease;
+    bedTextController.text = widget.bed;
+
+    final docId = widget.id;
+
     return Scaffold(
-      backgroundColor: secondary,
-      appBar: AppBar(
-        toolbarHeight: height * .085,
-        backgroundColor: theme,
-        title: const Text(
-          'Add Patient',
-          style: TextStyle(
-            fontSize: 21,
-            fontWeight: FontWeight.bold,
+        backgroundColor: secondary,
+        appBar: AppBar(
+          toolbarHeight: height * .085,
+          backgroundColor: theme,
+          title: const Text(
+            'Edit Patient',
+            style: TextStyle(
+              fontSize: 21,
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
         body: SingleChildScrollView(
           child: Center(
               child:
@@ -106,7 +109,7 @@ class _AddPatientPageState extends State<AddPatientPage> {
                   setState(() {
                     loading = true;
                   });
-                    addPatient();
+                  updateUser(docId);
                   Navigator.pop(context);
                 }),
                 SizedBox(height: height * .03),

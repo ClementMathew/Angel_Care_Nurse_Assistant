@@ -77,7 +77,9 @@ class _AdminHomeState extends State<AdminHome> {
                   },
                 ),
                 leading: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+                  },
                   icon: const Icon(
                     Icons.account_circle_rounded,
                     color: Colors.white,

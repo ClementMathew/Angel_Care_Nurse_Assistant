@@ -18,6 +18,9 @@ class ScanQRPage extends StatefulWidget {
 }
 
 class _ScanQRPageState extends State<ScanQRPage> {
+
+  int isEmpty = 0;
+
   CollectionReference patient =
       FirebaseFirestore.instance.collection('Patients');
 
@@ -43,7 +46,6 @@ class _ScanQRPageState extends State<ScanQRPage> {
 
   @override
   Widget build(BuildContext context) {
-    var tagprovider = Provider.of<TagProvider>(context, listen: false);
 
     return SafeArea(
         child: Scaffold(
@@ -107,7 +109,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8), color: Colors.white),
       child: Text(
-        barcode != null ? 'Done !' : 'Scan a code !',
+        barcode != null ? (isEmpty>0 ?'Done !' : 'Bed Not Allocated !') : 'Scan a code !',
         maxLines: 3,
       ));
 
@@ -133,18 +135,20 @@ class _ScanQRPageState extends State<ScanQRPage> {
       setState(() {
         this.barcode = barcode;
         callData();
-        Future.delayed(const Duration(milliseconds: 200), () {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PatientPage(
-                    name: tagprovider.getName,
-                    age: tagprovider.getAge,
-                    date: tagprovider.getDate,
-                    disease: tagprovider.getDisease,
-                    phone: tagprovider.getPhone),
-              ));
-        });
+        if(isEmpty >0){
+          Future.delayed(const Duration(milliseconds: 200), () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PatientPage(
+                      name: tagprovider.getName,
+                      age: tagprovider.getAge,
+                      date: tagprovider.getDate,
+                      disease: tagprovider.getDisease,
+                      phone: tagprovider.getPhone),
+                ));
+          });
+        }
       });
     });
   }
@@ -152,10 +156,12 @@ class _ScanQRPageState extends State<ScanQRPage> {
   callData() async {
     var tagprovider = Provider.of<TagProvider>(context, listen: false);
 
-    QuerySnapshot snapshot =
-        await patient.where('bed', isEqualTo: barcode!.code).get();
-    if (snapshot != null) {
+    QuerySnapshot snapshot = await patient.where('bed', isEqualTo: barcode!.code).get();
+    if (snapshot != null){
       snapshot.docs.forEach((doc) async {
+        if(doc['name'] != ""){
+          isEmpty = isEmpty+1;
+        }
         await tagprovider.giveData(
             doc['name'], doc['age'], doc['admission'], doc['disease'], doc['phone'].toString());
       });
