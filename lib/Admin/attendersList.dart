@@ -86,6 +86,7 @@ class _AttendersListPageState extends State<AttendersListPage> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
+                      physics: const ScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: snapshot.data.docs.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -169,6 +170,7 @@ class _AttendersListPageState extends State<AttendersListPage> {
                   return Container();
                 },
               ),
+              SizedBox(height: height*.04,)
             ],
           ),
         ),

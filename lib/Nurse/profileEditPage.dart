@@ -103,7 +103,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     MyDropDownColor(myList: groups,isEdit: true,),
                     SizedBox(height: height * .03),
                     textFieldColor(false, false, null, "Staff Id Number", staffIdTextController),
-                    SizedBox(height: height * .1),
+                    SizedBox(height: height * .05),
                     loading ? CircularProgressIndicator(
                       color: theme,
                     ):longButton("Confirm",()async{

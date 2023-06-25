@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,6 +11,9 @@ String theDisease = "";
 String thePhone = "";
 
 class TagProvider with ChangeNotifier {
+
+  CollectionReference patient = FirebaseFirestore.instance.collection('Patients');
+
   String get getEmail => theEmail;
   String get getPassword => thePassword;
   String get getName => theName;
@@ -55,4 +59,5 @@ class TagProvider with ChangeNotifier {
     theDisease = disease;
     thePhone = phone;
   }
+
 }

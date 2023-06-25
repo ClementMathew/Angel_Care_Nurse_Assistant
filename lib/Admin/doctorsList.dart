@@ -85,6 +85,7 @@ class _DoctorsListPageState extends State<DoctorsListPage> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
+                      physics: const ScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: snapshot.data.docs.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -168,6 +169,7 @@ class _DoctorsListPageState extends State<DoctorsListPage> {
                   return Container();
                 },
               ),
+              SizedBox(height: height*.04,)
             ],
           ),
         ),

@@ -32,10 +32,10 @@ class _PatientAssignPageState extends State<PatientAssignPage> {
         child: Column(
           children: [
             const SizedBox(height: 10,),
-            block(context,"General Ward",const PatientSelectionPage()),
-            block(context,"Operation Theatre",null),
-            block(context,"Casuality",null),
-            block(context,"Intensive Care Unit",null),
+            block(context,"General Ward",const PatientSelectionPage(dept: "General Ward",)),
+            block(context,"Operation Theatre",const PatientSelectionPage(dept: "Operation Theatre",)),
+            block(context,"Casuality",const PatientSelectionPage(dept: "Casuality",)),
+            block(context,"Intensive Care Unit",const PatientSelectionPage(dept: "Intensive Care Unit",)),
           ],
         ),
       ),);
@@ -46,7 +46,8 @@ Widget block(context,String content,page){
   return Padding(
     padding: const EdgeInsets.only(top: 20),
     child: ElevatedButton(
-      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => page,));},
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => page,));},
       style: ElevatedButton.styleFrom(
         shadowColor: Colors.black,
           elevation: 3,

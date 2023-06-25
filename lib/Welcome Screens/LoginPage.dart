@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     }).onError((error, stackTrace) {
                       const snackBar =
-                      SnackBar(content: Text("Invalid Credentials"));
+                      SnackBar(content: Text("Invalid Credentials or Network Error"));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       setState(() {
                         loading = false;

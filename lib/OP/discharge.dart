@@ -86,6 +86,7 @@ class _DischargePageState extends State<DischargePage> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
+                      physics: const ScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: snapshot.data.docs.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -157,6 +158,7 @@ class _DischargePageState extends State<DischargePage> {
                   return Container();
                 },
               ),
+              SizedBox(height: height*.04,)
             ],
           ),
         ),
