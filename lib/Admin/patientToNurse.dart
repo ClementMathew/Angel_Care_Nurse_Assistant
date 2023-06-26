@@ -7,7 +7,7 @@ import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
 String? nurse;
-String? id;
+String? name;
 String? phone;
 
 class PatientToNursePage extends StatefulWidget {
@@ -179,7 +179,7 @@ class _PatientToNursePageState extends State<PatientToNursePage> {
                                               return theme;
                                             },
                                           ),
-                                          value: testSnap.get('name'),
+                                          value: testSnap.get('staff-id'),
                                           groupValue: nurse,
                                           onChanged: (value) {
                                             setState(() {
@@ -216,18 +216,18 @@ class _PatientToNursePageState extends State<PatientToNursePage> {
             left: 20,
             child: longButton("Assign", () async {
               QuerySnapshot snapshot = await user
-                  .where('name',
+                  .where('staff-id',
                   isEqualTo: nurse)
                   .get();
               snapshot.docs.forEach((element) {
-                id = element['staff-id'];
+                name = element['name'];
                 phone = element['phone'].toString();
               });
 
               assignedP.add({
-                'nurse':nurse,
+                'id':nurse,
                 'dept':widget.dept,
-                'id':id,
+                'name':name,
                 'phone':phone,
                 'patients':selectedNurses
               });

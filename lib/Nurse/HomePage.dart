@@ -11,7 +11,6 @@ import 'package:nurse_assistant/Reusables/homeList.dart';
 import 'package:nurse_assistant/Reusables/popUpMenu.dart';
 
 import '../Welcome Screens/WelcomePage.dart';
-import 'PatientPage.dart';
 
 class NurseHome extends StatefulWidget {
   const NurseHome({Key? key}) : super(key: key);
@@ -21,15 +20,13 @@ class NurseHome extends StatefulWidget {
 }
 
 class _NurseHomeState extends State<NurseHome> {
-
   final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference user =
-  FirebaseFirestore.instance.collection('Users');
+      FirebaseFirestore.instance.collection('Users');
   late DocumentReference reference = user.doc(auth.currentUser?.uid);
 
   @override
   Widget build(BuildContext context) {
-
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
@@ -39,11 +36,10 @@ class _NurseHomeState extends State<NurseHome> {
             appBar: AppBar(
                 backgroundColor: theme,
                 toolbarHeight: height * .085,
-                title:
-                StreamBuilder<DocumentSnapshot>(
+                title: StreamBuilder<DocumentSnapshot>(
                   stream: reference.snapshots(),
-                  builder:
-                      (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  builder: (BuildContext context,
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
                     if (snapshot.hasError) {
                       return const Text("Angel Care",
                           style: TextStyle(
@@ -55,7 +51,7 @@ class _NurseHomeState extends State<NurseHome> {
                       DocumentSnapshot docSnapshot = snapshot.data!;
                       String fieldData = (docSnapshot.get('name')).toString();
                       return InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -75,7 +71,12 @@ class _NurseHomeState extends State<NurseHome> {
                   },
                 ),
                 leading: IconButton(
-                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfilePage()));
+                  },
                   icon: const Icon(
                     Icons.account_circle_rounded,
                     color: Colors.white,
@@ -84,7 +85,13 @@ class _NurseHomeState extends State<NurseHome> {
                 ),
                 actions: [
                   IconButton(
-                      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const NotificationPage()));
+                      },
                       icon: const Icon(
                         Icons.notifications,
                         color: Colors.white,
@@ -137,10 +144,16 @@ class _NurseHomeState extends State<NurseHome> {
                           const SizedBox(
                             height: 5,
                           ),
-                          homeButton(context, "Scan QR Code", const ScanQRPage(),
+                          homeButton(
+                              context,
+                              "Scan QR Code",
+                              const ScanQRPage(),
                               'assets/icons/nurse/scanqr.png'),
                           myDivider(),
-                          homeButton(context, "Patients Assigned", const AssignedPatientsPage(),
+                          homeButton(
+                              context,
+                              "Patients Assigned",
+                              const AssignedPatientsPage(),
                               'assets/icons/nurse/patientsassigned.png'),
                           myDivider(),
                           homeButton(context, "Pharmacy", const PharmacyPage(),

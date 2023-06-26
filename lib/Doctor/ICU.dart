@@ -71,7 +71,7 @@ class _ICUPageState extends State<ICUPage> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 22),
                                       child: Text(
-                                        "${testSnap.get('nurse')}",
+                                        "${testSnap.get('name')}",
                                         style: GoogleFonts.ibarraRealNova(
                                             fontWeight: FontWeight.bold, fontSize: 20),
                                       ),
