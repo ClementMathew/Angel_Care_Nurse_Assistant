@@ -25,6 +25,25 @@ class _NurseHomeState extends State<NurseHome> {
       FirebaseFirestore.instance.collection('Users');
   late DocumentReference reference = user.doc(auth.currentUser?.uid);
 
+  String fieldData = "None";
+
+  getName() async {
+    await reference.get().then((DocumentSnapshot snapshot) {
+      if (snapshot.exists) {
+        fieldData = snapshot.get('name') as String;
+      }
+    }).then((value) {
+      setState(() {
+      });
+    });
+  }
+
+  @override
+  void initState(){
+    getName();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
@@ -49,7 +68,7 @@ class _NurseHomeState extends State<NurseHome> {
                     }
                     if (snapshot.hasData) {
                       DocumentSnapshot docSnapshot = snapshot.data!;
-                      String fieldData = (docSnapshot.get('name')).toString();
+                      String fieldName = (docSnapshot.get('name')).toString();
                       return InkWell(
                         onTap: () {
                           Navigator.push(
@@ -59,7 +78,7 @@ class _NurseHomeState extends State<NurseHome> {
                               ));
                         },
                         child: Text(
-                          fieldData,
+                          fieldName,
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -153,7 +172,7 @@ class _NurseHomeState extends State<NurseHome> {
                           homeButton(
                               context,
                               "Patients Assigned",
-                              const AssignedPatientsPage(),
+                               AssignedPatientsPage(name: fieldData),
                               'assets/icons/nurse/patientsassigned.png'),
                           myDivider(),
                           homeButton(context, "Pharmacy", const PharmacyPage(),

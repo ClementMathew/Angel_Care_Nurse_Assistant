@@ -1,10 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../Colors/Colors.dart';
+import '../Provider/provider.dart';
 import '../Welcome Screens/WelcomePage.dart';
+import 'PatientPage.dart';
 
 class MedicationsPage extends StatefulWidget {
-  const MedicationsPage({super.key});
+  final name;
+  final age;
+  const MedicationsPage({super.key, this.name, this.age});
 
   @override
   _MyWidgetState createState() => _MyWidgetState();
@@ -124,7 +130,33 @@ class _MyWidgetState extends State<MedicationsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [const SizedBox(width: 10,),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      DocumentReference documentRef = FirebaseFirestore.instance.collection('Patients').doc(widget.name.toString()+widget.age.toString());
+
+                      // Define the field and value you want to add
+                      Map<String, dynamic> data = {
+                        'medications': displayTextList,
+                      };
+
+                      // Update the document with the new field
+                      documentRef.update(data).then((_) {
+                        print('Field added successfully.');
+                        Navigator.pop(context);
+                        var tagprovider = Provider.of<TagProvider>(context, listen: false);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PatientPage(
+                                  name: tagprovider.getName,
+                                  age: tagprovider.getAge,
+                                  date: tagprovider.getDate,
+                                  disease: tagprovider.getDisease,
+                                  phone: tagprovider.getPhone),
+                            ));
+                      }).catchError((error) {
+                        print('Error adding field: $error');
+                      });
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: theme,
                         fixedSize: Size(width * .6, 50),

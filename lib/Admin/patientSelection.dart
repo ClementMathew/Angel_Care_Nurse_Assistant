@@ -179,7 +179,7 @@ class _PatientSelectionPageState extends State<PatientSelectionPage> {
                                             selectedCheckboxes[index] = value;
                                           });
                                           if(value == true){
-                                            selectedPatient[index] = testSnap.get('name');
+                                            selectedPatient[index] = testSnap.get('name')+"-"+testSnap.get('bed');
                                           }
                                           else{
                                             selectedPatient[index] = "not";

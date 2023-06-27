@@ -7,32 +7,37 @@ import '../Colors/Colors.dart';
 import '../Welcome Screens/WelcomePage.dart';
 
 class AssignedPatientsPage extends StatefulWidget {
-  const AssignedPatientsPage({Key? key}) : super(key: key);
+  final name;
+
+  const AssignedPatientsPage({Key? key, this.name}) : super(key: key);
 
   @override
   State<AssignedPatientsPage> createState() => _AssignedPatientsPageState();
 }
 
 class _AssignedPatientsPageState extends State<AssignedPatientsPage> {
-  String gotname = "Loading";
-
   CollectionReference assignedP =
       FirebaseFirestore.instance.collection('P-Assigned');
-  final CollectionReference user =
-      FirebaseFirestore.instance.collection('Users');
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  late DocumentReference reference = user.doc(auth.currentUser?.uid);
 
-  getName() {
-    reference.get().then((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        gotname = documentSnapshot.get('name').toString();
-      }
+  List<dynamic>? array = [];
+
+  getPatients() async {
+    Query query = assignedP.where('name', isEqualTo: widget.name);
+
+    query.snapshots().listen((QuerySnapshot snapshot) {
+      snapshot.docs.forEach((DocumentSnapshot document) {
+        array = document.get('patients') as List<dynamic>?;
+      });
     });
   }
 
   @override
   void initState() {
+    getPatients();
+    Future.delayed(const Duration(milliseconds: 400),() {
+      setState(() {
+      });
+    });
     super.initState();
   }
 
@@ -52,97 +57,118 @@ class _AssignedPatientsPageState extends State<AssignedPatientsPage> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Container(
-                height: height * .065,
-                width: width * .92,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(18),
-                    )),
-                child: Center(
-                  child: StreamBuilder(
-                      stream: assignedP
-                          .where('name', isEqualTo: "Clement Mathew")
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          QuerySnapshot querySnapshot = snapshot.data!;
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Container(
+                  height: height * .065,
+                  width: width * .92,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(18),
+                      )),
+                  child: Center(
+                    child: StreamBuilder(
+                        stream: assignedP
+                            .where('name', isEqualTo: widget.name)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            QuerySnapshot querySnapshot = snapshot.data!;
 
-                          if (querySnapshot.docs.isNotEmpty) {
-                            DocumentSnapshot documentSnapshot =
-                                querySnapshot.docs.first;
-                            String fieldValue =
-                                documentSnapshot.get('dept') as String;
+                            if (querySnapshot.docs.isNotEmpty) {
+                              DocumentSnapshot documentSnapshot =
+                                  querySnapshot.docs.first;
+                              String fieldValue =
+                                  documentSnapshot.get('dept') as String;
+                              return Text(
+                                fieldValue,
+                                style: TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w600,
+                                    color: theme),
+                              );
+                            } else {
+                              return Text(
+                                'No Duty',
+                                style: TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w600,
+                                    color: theme),
+                              );
+                            }
+                          } else if (snapshot.hasError) {
                             return Text(
-                              fieldValue,
+                              'Loading',
                               style: TextStyle(
                                   fontSize: 21,
                                   fontWeight: FontWeight.w600,
                                   color: theme),
                             );
                           } else {
-                            return const Text('No matching documents found');
+                            return const Text('');
                           }
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else {
-                          return const CircularProgressIndicator();
-                        }
-                      }),
+                        }),
+                  ),
                 ),
               ),
             ),
-          ),
-          patient(),
-          patient(),
-        ],
+            ListView.builder(
+              physics: const ScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: array?.length,
+              itemBuilder: (BuildContext context, int index) {
+
+                String name = array?[index];
+                List assigned = name.split("-");
+
+                return Padding(
+                  padding: const EdgeInsets.only(top: 15,right: 18,left: 18),
+                  child: Container(
+                    width: width * .9,
+                    height: height * .12,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 3, color: theme),
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(18),
+                        )),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: .5),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 22),
+                          child: Text(
+                            "Name : ${assigned[0]}",
+                            style: GoogleFonts.ibarraRealNova(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 22),
+                          child: Text(
+                            "Bed Number : ${assigned[1]}",
+                            style: GoogleFonts.ibarraRealNova(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ),
+                        const SizedBox(height: .5),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: height*.025,)
+          ],
+        ),
       ),
     );
   }
-}
-
-Widget patient() {
-  return Padding(
-    padding: const EdgeInsets.only(top: 15),
-    child: Container(
-      width: width * .9,
-      height: height * .12,
-      decoration: BoxDecoration(
-          border: Border.all(width: 3, color: theme),
-          color: Colors.white,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(18),
-          )),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: .5),
-          Padding(
-            padding: const EdgeInsets.only(left: 22),
-            child: Text(
-              "Name : Clement Mathew",
-              style: GoogleFonts.ibarraRealNova(
-                  fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 22),
-            child: Text(
-              "Bed Number : 506",
-              style: GoogleFonts.ibarraRealNova(
-                  fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          const SizedBox(height: .5),
-        ],
-      ),
-    ),
-  );
 }

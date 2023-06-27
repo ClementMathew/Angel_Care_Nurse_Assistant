@@ -109,7 +109,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8), color: Colors.white),
       child: Text(
-        barcode != null ? (isEmpty>0 ?'Done !' : 'Bed Not Allocated !') : 'Scan a code !',
+        barcode != null ? (isEmpty>0 ?'Done !' : 'Loading !') : 'Scan a code !',
         maxLines: 3,
       ));
 

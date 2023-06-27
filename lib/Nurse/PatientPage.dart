@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
@@ -5,6 +6,7 @@ import 'package:nurse_assistant/Nurse/SymptomsPage.dart';
 import 'package:nurse_assistant/Reusables/addButton.dart';
 import 'package:nurse_assistant/Reusables/buttons.dart';
 import 'package:nurse_assistant/Welcome%20Screens/WelcomePage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'MedicationsPage.dart';
 import 'medicalRecords.dart';
@@ -18,6 +20,44 @@ class PatientPage extends StatefulWidget {
 }
 
 class _PatientPageState extends State<PatientPage> {
+
+  CollectionReference patient = FirebaseFirestore.instance.collection("Patients");
+
+  List<dynamic>? symptoms = [];
+
+  getPatients() async {
+    Query query = patient.where('name', isEqualTo: widget.name);
+
+    query.snapshots().listen((QuerySnapshot snapshot) {
+      snapshot.docs.forEach((DocumentSnapshot document) {
+        symptoms = document.get('symptoms') as List<dynamic>?;
+      });
+    });
+  }
+
+  List<dynamic>? medications = [];
+
+  getPatientm() async {
+    Query query = patient.where('name', isEqualTo: widget.name);
+
+    query.snapshots().listen((QuerySnapshot snapshot) {
+      snapshot.docs.forEach((DocumentSnapshot document) {
+        medications = document.get('medications') as List<dynamic>?;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    getPatients();
+    getPatientm();
+    Future.delayed(const Duration(milliseconds: 500),() {
+      setState(() {
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -173,7 +213,17 @@ class _PatientPageState extends State<PatientPage> {
                           Padding(
                             padding: const EdgeInsets.only(right: 5.0),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                final Uri url = Uri(
+                                  scheme: 'tel',
+                                  path: widget.phone,
+                                );
+                                if (await canLaunchUrl(url)) {
+                                await launchUrl(url);
+                                } else {
+                                print('Cannot launch this url');
+                                }
+                              },
                               icon: const Icon(
                                 Icons.phone,
                                 size: 29,
@@ -225,9 +275,26 @@ class _PatientPageState extends State<PatientPage> {
                                 fontSize: 23,
                                 decoration: TextDecoration.underline),
                           ),
-                          trailing: const MyAddButton(
-                            page: SymptomsPage(),
-                          ))
+                          trailing: MyAddButton(
+                            page: SymptomsPage(name: widget.name,age: widget.age),
+                          )),
+                      ListView.builder(
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: symptoms?.length,
+                        itemBuilder: (BuildContext context, int index) {
+
+                          String name = symptoms?[index];
+
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 20,top: 5),
+                            child: Text('${index+1}. $name',style: GoogleFonts.ibarraRealNova(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 19,),),
+                          );
+                        },
+                      ),
+                      SizedBox(height: height*.02,)
                     ],
                   ),
                 ),
@@ -249,9 +316,26 @@ class _PatientPageState extends State<PatientPage> {
                                 fontSize: 23,
                                 decoration: TextDecoration.underline),
                           ),
-                          trailing: const MyAddButton(
-                            page: MedicationsPage(),
-                          ))
+                          trailing: MyAddButton(
+                            page: MedicationsPage(age: widget.age,name: widget.name),
+                          )),
+                      ListView.builder(
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: medications?.length,
+                        itemBuilder: (BuildContext context, int index) {
+
+                          String name = medications?[index];
+
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 20,top: 5),
+                            child: Text('${index+1}. $name',style: GoogleFonts.ibarraRealNova(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 19,),),
+                          );
+                        },
+                      ),
+                      SizedBox(height: height*.02,)
                     ],
                   ),
                 ),
