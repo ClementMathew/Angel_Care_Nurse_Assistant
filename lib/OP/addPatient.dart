@@ -37,7 +37,7 @@ class _AddPatientPageState extends State<AddPatientPage> {
       String disease,
       String bed,
       ) async {
-    return await user.doc(name+age).set({
+    return await user.doc((name.split(" ")[0])+phone.toString()).set({
       'name': name,
       'age': age,
       'admission': admission,

@@ -47,9 +47,9 @@ class _PatientSelectionPageState extends State<PatientSelectionPage> {
       appBar: AppBar(
         toolbarHeight: height * .085,
         backgroundColor: theme,
-        title: const Text(
-          'General Ward',
-          style: TextStyle(
+        title: Text(
+          widget.dept,
+          style: const TextStyle(
             fontSize: 21,
             fontWeight: FontWeight.bold,
           ),

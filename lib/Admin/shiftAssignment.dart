@@ -74,9 +74,9 @@ class _ShiftAssignPageState extends State<ShiftAssignPage> {
         ),
       ),
           const SizedBox(height: 7,),
-          block(context,"Morning",ShiftTimePage()),
-          block(context,"Evening",null),
-          block(context,"Night",null),
+          block(context,"Morning",ShiftTimePage(time: "Morning",date: shiftController.text,)),
+          block(context,"Evening",ShiftTimePage(time: "Evening",date: shiftController.text,)),
+          block(context,"Night",ShiftTimePage(time: "Night",date: shiftController.text,)),
         ],
       ),
     ),);
