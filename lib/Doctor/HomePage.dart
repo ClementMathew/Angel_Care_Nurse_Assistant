@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,12 +27,13 @@ class _DoctorHomeState extends State<DoctorHome> {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference user =
-  FirebaseFirestore.instance.collection('Users');
+      FirebaseFirestore.instance.collection('Users');
   late DocumentReference reference = user.doc(auth.currentUser?.uid);
+
+  CollectionReference alarm = FirebaseFirestore.instance.collection("Alarm");
 
   @override
   Widget build(BuildContext context) {
-
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
@@ -43,8 +45,8 @@ class _DoctorHomeState extends State<DoctorHome> {
                 toolbarHeight: height * .085,
                 title: StreamBuilder<DocumentSnapshot>(
                   stream: reference.snapshots(),
-                  builder:
-                      (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  builder: (BuildContext context,
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
                     if (snapshot.hasError) {
                       return const Text("Angel Care",
                           style: TextStyle(
@@ -56,7 +58,7 @@ class _DoctorHomeState extends State<DoctorHome> {
                       DocumentSnapshot docSnapshot = snapshot.data!;
                       String fieldData = (docSnapshot.get('name')).toString();
                       return InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -76,7 +78,12 @@ class _DoctorHomeState extends State<DoctorHome> {
                   },
                 ),
                 leading: IconButton(
-                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfilePage()));
+                  },
                   icon: const Icon(
                     Icons.account_circle_rounded,
                     color: Colors.white,
@@ -84,19 +91,37 @@ class _DoctorHomeState extends State<DoctorHome> {
                   ),
                 ),
                 actions: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
-                      },
-                      icon: const Icon(
-                        Icons.notifications,
-                        color: Colors.white,
-                        size: 24.0,
-                      )),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: alarm.snapshots(),
+                    // Stream of snapshots from the "users" collection
+                    builder: (context, snapshot) {
+                      DocumentSnapshot document = snapshot.data!.docs[0];
+                      Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+                      if(data['status'] == "yes"){
+                        final player = AudioPlayer();
+                        player.play(AssetSource('audio/alarm.m4a'));
+                        return Icon(Icons.notifications_active);
+                      }
+                      return IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    const NotificationPage()));
+                          },
+                          icon: const Icon(
+                            Icons.notifications,
+                            color: Colors.white,
+                            size: 24.0,
+                          ));
+                    },
+                  ),
                   const SizedBox(
                     width: 1,
                   ),
-                  const PopUpMenu()
+                  const PopUpMenu(),
+
                 ]),
             body: SingleChildScrollView(
               child: Stack(children: [
@@ -140,20 +165,29 @@ class _DoctorHomeState extends State<DoctorHome> {
                           const SizedBox(
                             height: 10,
                           ),
-                          homeButton(context, "Scan QR Code", const ScanQRPage(),
-                            'assets/icons/doctor/scanqr.png'),
+                          homeButton(
+                              context,
+                              "Scan QR Code",
+                              const ScanQRPage(),
+                              'assets/icons/doctor/scanqr.png'),
                           myDivider(),
-                          homeButton(context, "General Ward", const GeneralWardPage(),
+                          homeButton(
+                              context,
+                              "General Ward",
+                              const GeneralWardPage(),
                               'assets/icons/doctor/generalward.png'),
                           myDivider(),
-                          homeButton(context, "Intensive Care Unit", const ICUPage(),
-                              'assets/icons/doctor/icu.png'),
+                          homeButton(context, "Intensive Care Unit",
+                              const ICUPage(), 'assets/icons/doctor/icu.png'),
                           myDivider(),
-                          homeButton(context, "Casuality", const CasualityPage(),
+                          homeButton(
+                              context,
+                              "Casuality",
+                              const CasualityPage(),
                               'assets/icons/doctor/casuality.png'),
                           myDivider(),
-                          homeButton(context, "Operation Theatre", const OTPage(),
-                              'assets/icons/doctor/ot.png'),
+                          homeButton(context, "Operation Theatre",
+                              const OTPage(), 'assets/icons/doctor/ot.png'),
                           const SizedBox(
                             height: 10,
                           ),

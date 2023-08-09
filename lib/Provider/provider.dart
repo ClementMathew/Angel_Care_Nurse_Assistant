@@ -9,6 +9,7 @@ String theAge = "";
 String theDate = "";
 String theDisease = "";
 String thePhone = "";
+String theImageLink = "";
 
 class TagProvider with ChangeNotifier {
 
@@ -21,6 +22,7 @@ class TagProvider with ChangeNotifier {
   String get getDate => theDate;
   String get getDisease => theDisease;
   String get getPhone => thePhone;
+  String get getImageLink => theImageLink;
 
   void changeDate(BuildContext context, final controller) async {
     DateTime? pickedDate = await showDatePicker(
@@ -52,12 +54,13 @@ class TagProvider with ChangeNotifier {
     thePassword = password;
   }
 
-  giveData(name,age,date,disease,phone) {
+  giveData(name,age,date,disease,phone,imagelink) {
     theName = name;
     theAge = age;
     theDate = date;
     theDisease = disease;
     thePhone = phone;
+    theImageLink = imagelink;
   }
 
 }

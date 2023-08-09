@@ -166,7 +166,7 @@ class _NurseHomeState extends State<NurseHome> {
                           homeButton(
                               context,
                               "Scan QR Code",
-                              const ScanQRPage(),
+                              ScanQRPage(user: fieldData),
                               'assets/icons/nurse/scanqr.png'),
                           myDivider(),
                           homeButton(

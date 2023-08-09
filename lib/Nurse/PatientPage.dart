@@ -1,8 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nurse_assistant/Colors/Colors.dart';
 import 'package:nurse_assistant/Nurse/SymptomsPage.dart';
+import 'package:nurse_assistant/Provider/provider.dart';
 import 'package:nurse_assistant/Reusables/addButton.dart';
 import 'package:nurse_assistant/Reusables/buttons.dart';
 import 'package:nurse_assistant/Welcome%20Screens/WelcomePage.dart';
@@ -12,8 +14,8 @@ import 'MedicationsPage.dart';
 import 'medicalRecords.dart';
 
 class PatientPage extends StatefulWidget {
-  final name,age,date,phone,disease;
-  const PatientPage({Key? key, this.name, this.age, this.date, this.phone, this.disease}) : super(key: key);
+  final name,age,date,phone,disease,imagelink,user;
+  const PatientPage({Key? key, this.name, this.age, this.date, this.phone, this.disease, this.imagelink, this.user}) : super(key: key);
 
   @override
   State<PatientPage> createState() => _PatientPageState();
@@ -21,7 +23,10 @@ class PatientPage extends StatefulWidget {
 
 class _PatientPageState extends State<PatientPage> {
 
+  String status = "no";
+
   CollectionReference patient = FirebaseFirestore.instance.collection("Patients");
+  CollectionReference alarm = FirebaseFirestore.instance.collection("Alarm");
 
   List<dynamic>? symptoms = [];
 
@@ -47,11 +52,41 @@ class _PatientPageState extends State<PatientPage> {
     });
   }
 
+  Future<void> addData(String status) async {
+    try {
+      await alarm.doc(widget.user.toString()+widget.name.toString()).set({
+        'name': widget.user,
+        'patient': widget.name,
+        'status': status,
+      });
+      print('Data added to Firestore');
+    } catch (e) {
+      print('Error adding data: $e');
+    }
+  }
+
+  addAlarm()
+  {
+    status = "yes";
+    addData(status);
+
+    Future.delayed(const Duration(seconds: 5), (){
+      status = "no";
+      addData(status);
+    });
+  }
+
+  play()
+  {
+    final player = AudioPlayer();
+    player.play(AssetSource('audio/alarm.m4a'));
+  }
+
   @override
   void initState() {
     getPatients();
     getPatientm();
-    Future.delayed(const Duration(milliseconds: 500),() {
+    Future.delayed(const Duration(milliseconds: 2000),() {
       setState(() {
       });
     });
@@ -76,7 +111,10 @@ class _PatientPageState extends State<PatientPage> {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  addAlarm();
+                  // play();
+                },
                 icon: const Icon(
                   Icons.notifications_active_sharp,
                   size: 26,
@@ -106,23 +144,18 @@ class _PatientPageState extends State<PatientPage> {
                             color: Colors.black26,
                             spreadRadius: 1,
                             blurRadius: 2,
-                          )
+                          ),
                         ],
                         color: Colors.white,
                         border: Border.all(width: 5, color: theme),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(15),
                         )),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
+                    child: widget.imagelink == "unknown"? Icon(
                         Icons.person,
-                        size: 80,
-                      ),
-                      color: theme,
-                    ),
-                    // child: Image.asset(
-                    //     ),
+                        size: 100,color: theme,
+                      ):
+                      Image.network(widget.imagelink)
                   ),
                   const SizedBox(
                     width: 20,
@@ -276,7 +309,7 @@ class _PatientPageState extends State<PatientPage> {
                                 decoration: TextDecoration.underline),
                           ),
                           trailing: MyAddButton(
-                            page: SymptomsPage(name: widget.name,age: widget.age),
+                            page: SymptomsPage(name: widget.name,phone: widget.phone),
                           )),
                       ListView.builder(
                         physics: const ScrollPhysics(),
@@ -317,7 +350,7 @@ class _PatientPageState extends State<PatientPage> {
                                 decoration: TextDecoration.underline),
                           ),
                           trailing: MyAddButton(
-                            page: MedicationsPage(age: widget.age,name: widget.name),
+                            page: MedicationsPage(phone: widget.phone,name: widget.name),
                           )),
                       ListView.builder(
                         physics: const ScrollPhysics(),

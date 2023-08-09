@@ -11,7 +11,8 @@ import '../Nurse/PatientPage.dart';
 import '../Provider/provider.dart';
 
 class ScanQRPage extends StatefulWidget {
-  const ScanQRPage({Key? key}) : super(key: key);
+  final user;
+  const ScanQRPage({Key? key, this.user}) : super(key: key);
 
   @override
   State<ScanQRPage> createState() => _ScanQRPageState();
@@ -145,7 +146,9 @@ class _ScanQRPageState extends State<ScanQRPage> {
                       age: tagprovider.getAge,
                       date: tagprovider.getDate,
                       disease: tagprovider.getDisease,
-                      phone: tagprovider.getPhone),
+                      phone: tagprovider.getPhone,
+                      imagelink: tagprovider.getImageLink,
+                      user: widget.user),
                 ));
           });
         }
@@ -163,7 +166,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
           isEmpty = isEmpty+1;
         }
         await tagprovider.giveData(
-            doc['name'], doc['age'], doc['admission'], doc['disease'], doc['phone'].toString());
+            doc['name'], doc['age'], doc['admission'], doc['disease'], doc['phone'].toString(),doc['image-link']);
       });
     } else {
       print('Document does not exist');

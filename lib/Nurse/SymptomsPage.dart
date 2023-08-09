@@ -9,8 +9,8 @@ import 'PatientPage.dart';
 
 class SymptomsPage extends StatefulWidget {
   final name;
-  final age;
-  const SymptomsPage({super.key, this.name, this.age});
+  final phone;
+  const SymptomsPage({super.key, this.name,this.phone});
 
   @override
   _MyWidgetState createState() => _MyWidgetState();
@@ -132,8 +132,9 @@ class _MyWidgetState extends State<SymptomsPage> {
                 children: [const SizedBox(width:10),
                   ElevatedButton(
                     onPressed: () {
+                      String name = widget.name;
 
-                        DocumentReference documentRef = FirebaseFirestore.instance.collection('Patients').doc(widget.name.toString()+widget.age.toString());
+                        DocumentReference documentRef = FirebaseFirestore.instance.collection('Patients').doc(name.split(" ")[0]+widget.phone.toString());
 
                         // Define the field and value you want to add
                         Map<String, dynamic> data = {

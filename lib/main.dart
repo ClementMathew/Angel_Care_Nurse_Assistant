@@ -31,6 +31,6 @@ class MyApp extends StatelessWidget {
             routes: {'/edit': (context) => const ProfileEditPage()},
             debugShowCheckedModeBanner: false,
             title: 'Nurse App',
-            home: SplashScreen()));
+            home: const SplashScreen()));
   }
 }
