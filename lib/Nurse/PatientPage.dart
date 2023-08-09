@@ -14,8 +14,8 @@ import 'MedicationsPage.dart';
 import 'medicalRecords.dart';
 
 class PatientPage extends StatefulWidget {
-  final name,age,date,phone,disease,imagelink,user;
-  const PatientPage({Key? key, this.name, this.age, this.date, this.phone, this.disease, this.imagelink, this.user}) : super(key: key);
+  final name,age,date,phone,disease,imagelink,user,symptoms,medications;
+  const PatientPage({Key? key, this.name, this.age, this.date, this.phone, this.disease, this.imagelink, this.user, this.symptoms, this.medications}) : super(key: key);
 
   @override
   State<PatientPage> createState() => _PatientPageState();

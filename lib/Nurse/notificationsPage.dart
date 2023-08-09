@@ -44,7 +44,6 @@ class _NotificationPageState extends State<NotificationPage> {
                 if (snapshot.hasError) {
                   return Container();
                 }
-
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator(color: theme,);
                 }

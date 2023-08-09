@@ -17,6 +17,7 @@ class SymptomsPage extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<SymptomsPage> {
+
   List<String> displayTextList = [];
 
   void _addString(String input) {
@@ -154,7 +155,10 @@ class _MyWidgetState extends State<SymptomsPage> {
                                     age: tagprovider.getAge,
                                     date: tagprovider.getDate,
                                     disease: tagprovider.getDisease,
-                                    phone: tagprovider.getPhone),
+                                    phone: tagprovider.getPhone,
+                                  symptoms: tagprovider.getSymptoms,
+                                  imagelink: tagprovider.getImageLink,
+                                ),
                               ));
                         }).catchError((error) {
                           print('Error adding field: $error');

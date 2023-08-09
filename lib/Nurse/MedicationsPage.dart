@@ -152,7 +152,11 @@ class _MyWidgetState extends State<MedicationsPage> {
                                   age: tagprovider.getAge,
                                   date: tagprovider.getDate,
                                   disease: tagprovider.getDisease,
-                                  phone: tagprovider.getPhone),
+                                  phone: tagprovider.getPhone,
+                                  medications: tagprovider.getMedications,
+                                imagelink: tagprovider.getImageLink,
+                                user: "Clement Mathew",
+                                  ),
                             ));
                       }).catchError((error) {
                         print('Error adding field: $error');

@@ -166,7 +166,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
           isEmpty = isEmpty+1;
         }
         await tagprovider.giveData(
-            doc['name'], doc['age'], doc['admission'], doc['disease'], doc['phone'].toString(),doc['image-link']);
+            doc['name'], doc['age'], doc['admission'], doc['disease'], doc['phone'].toString(),doc['image-link'],doc['symptoms'],doc['medications']);
       });
     } else {
       print('Document does not exist');
