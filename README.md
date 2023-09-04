@@ -34,7 +34,6 @@ flutter run lib/main.dart
 ![Screenshot 2023-09-04 131655](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/d8d92714-27db-4ed4-a9e4-51b3b7527bcf)
 ![Screenshot 2023-09-04 131704](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/095fdc72-0d88-4804-ba68-4cdaed659c4d)
 ![Screenshot 2023-09-04 131715](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/3adf26aa-00c7-42f5-b074-e3fa8eea1c29)
-![Screenshot 2023-09-04 131756](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/8410cf9b-5209-49ff-baf9-51fe8d80d9e6)
 ![Screenshot 2023-09-04 131821](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/7292d2f5-15cd-4b40-ba80-918e633f028d)
 ![Screenshot 2023-09-04 131836](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/6e5256b1-7290-4aab-bbd2-018095aaa9c1)
 ![Screenshot 2023-09-04 131848](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/2dcd3d92-2672-4cee-a006-1f2e18f39b90)
@@ -43,4 +42,4 @@ flutter run lib/main.dart
 ![Screenshot 2023-09-04 131924](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/ff0c96a7-4684-4ac9-b5df-480e850b4b8e)
 ![Screenshot 2023-09-04 131937](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/3e2be11e-7170-4c22-84f1-4e5b3e6ec0ff)
 ![Screenshot 2023-09-04 131948](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/0b5a2013-187b-4eb6-bc2c-00b9f85e29de)
-
+![Screenshot 2023-09-04 131756](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/8410cf9b-5209-49ff-baf9-51fe8d80d9e6)
