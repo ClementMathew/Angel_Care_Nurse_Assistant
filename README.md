@@ -1,24 +1,11 @@
-# YouTurn
-The application is crowdsourced and the information is
-accessible by any user. The information on the application (for
-example a landslide) added by one user can be edited or deleted
-by another in the same locality .
+# Angel Care
+The application is developed to assist Nurses to work efficient and effortless.
+The application helps to access Patient Data easily with the help of QR Code and Give Alarmed Notification for Nurses and Doctors in case of Emergency.
+Also make Patient Assignment and Shift Time Assignment Easy.
 
-check out the deployed version of web [Here](https://youturn.onrender.com)
-
-## How To Run Web App & Server
-to buld the application use
-```bash
-npm run build
-```
-
-to run the application use
-```bash
-node app
-```
 ## Requirements
-* MongoDB
-* Node JS
+* Firebase
+* Dart
 * Flutter
 
 ## How To Run Flutter App
