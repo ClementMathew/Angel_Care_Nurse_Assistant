@@ -40,7 +40,7 @@ flutter run lib/main.dart
 <img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/3ff1d7d2-883a-40a8-bd9c-8db9e8da9a1b" width="300" height="680">
 <img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/ff0c96a7-4684-4ac9-b5df-480e850b4b8e" width="300" height="680">
 <img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/3e2be11e-7170-4c22-84f1-4e5b3e6ec0ff" width="300" height="680">
+<img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/3adf26aa-00c7-42f5-b074-e3fa8eea1c29" width="300" height="680">
+<img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/0b5a2013-187b-4eb6-bc2c-00b9f85e29de" width="300" height="680">
 <img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/8410cf9b-5209-49ff-baf9-51fe8d80d9e6" width="300" height="680">
 <img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/67e0b27b-ae10-4a3d-aeb6-2393f9910620" width="300" height="680">
-<img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/0b5a2013-187b-4eb6-bc2c-00b9f85e29de" width="300" height="680">
-<img src="https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/3adf26aa-00c7-42f5-b074-e3fa8eea1c29" width="300" height="680">
