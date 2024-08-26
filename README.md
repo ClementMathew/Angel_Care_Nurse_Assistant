@@ -20,7 +20,7 @@ to run the application use
 flutter run lib/main.dart
 ```
 
-
+# Preview
 ![Screenshot 2023-09-04 131351](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/f3acaea5-c895-4bca-a638-384a1a3ce3c1)
 ![Screenshot 2023-09-04 131417](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/7db2bb77-0a57-4e19-b082-d569919961eb)
 ![Screenshot 2023-09-04 131433](https://github.com/ClementMathew/Nurse_Assistant/assets/89939823/c6f319d2-9ca5-49c9-8ed5-1e8fc1d9c29a)
