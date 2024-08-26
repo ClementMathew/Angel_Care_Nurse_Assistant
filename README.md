@@ -15,7 +15,7 @@ flutter pub get
 flutter build apk --release
 ```
 
-to run the application use
+to run the application use  
 ```bash
 flutter run lib/main.dart
 ```
